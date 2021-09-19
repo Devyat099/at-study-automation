@@ -59,4 +59,5 @@ public class StringUtils {
         System.out.println(randomString("SASA", 10));
 
     }
+
 }

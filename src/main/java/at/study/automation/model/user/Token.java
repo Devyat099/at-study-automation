@@ -2,6 +2,7 @@ package at.study.automation.model.user;
 
 
 import at.study.automation.model.Creatable;
+import at.study.automation.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +17,11 @@ public class Token extends CreatableEntity implements Creatable<Token> {
 
 
     private Integer userId;
-    private Action action;
-    private String value;
+    private TokenType tokenType = TokenType.API;
+    private String value = StringUtils.randomHexString(40);
 
 
-    public enum Action {
+    public enum TokenType {
         SESSION,
         API,
         FEEDS
