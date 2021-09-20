@@ -2,9 +2,9 @@ package at.study.automation.model.role;
 
 public enum IssuesVisibility {
 
-    ALL_TASK_VISIBILITY("Все задачи"),
-    OWN_TASK_VISIBILITY("Задачи созданные или назначенные пользователю"),
-    DEFAULT_TASK_VISIBILITY("Только общие задачи");
+    ALL_TASK_VISIBILITY("all"),
+    OWN_TASK_VISIBILITY("own"),
+    DEFAULT_TASK_VISIBILITY("default");
 
     public final String taskVisibility;
 
