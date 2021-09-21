@@ -1,6 +1,7 @@
 package at.study.automation.model.user;
 
 import at.study.automation.model.Creatable;
+import at.study.automation.model.CreatableEntity;
 import at.study.automation.model.project.Progect;
 import at.study.automation.model.role.Role;
 import at.study.automation.utils.StringUtils;

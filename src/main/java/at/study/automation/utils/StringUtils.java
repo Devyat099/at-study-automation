@@ -38,7 +38,7 @@ public class StringUtils {
     /**
      * генерирунт случайную строку из передаваемого паттерна заданной длины
      *
-     * @return
+     * @return сгенерированная строка
      */
     public static String randomString(String pattern, int lengtth) {
         StringBuilder sb = new StringBuilder();

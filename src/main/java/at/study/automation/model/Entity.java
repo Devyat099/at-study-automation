@@ -1,4 +1,4 @@
-package at.study.automation.model.user;
+package at.study.automation.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

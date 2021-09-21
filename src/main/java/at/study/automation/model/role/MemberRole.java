@@ -1,7 +1,7 @@
 package at.study.automation.model.role;
 
 import at.study.automation.model.Creatable;
-import at.study.automation.model.user.Entity;
+import at.study.automation.model.Entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
