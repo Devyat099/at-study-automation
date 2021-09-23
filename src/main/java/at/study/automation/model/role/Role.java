@@ -1,7 +1,7 @@
 package at.study.automation.model.role;
 
 import at.study.automation.model.Creatable;
-import at.study.automation.model.Entity;
+import at.study.automation.model.CreatableEntity;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,16 +14,16 @@ import java.util.Random;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Role extends Entity implements Creatable<Role>  {
+public class Role extends CreatableEntity implements Creatable<Role>  {
 
-    // Наименование Роли
+
     private String name = "Devyat " + StringUtils.randomEnglishString(5);
 
     // Позиция отображения в общем списке ролей
     private Integer position = (new Random()).nextInt(1999);
 
     // возможность назначить задачу для этой роли
-    private Assignable assignable = Assignable.IS_ASSIGNABLE;
+    private Boolean assignable = true;
 
     private final Integer builtin = 0;
 

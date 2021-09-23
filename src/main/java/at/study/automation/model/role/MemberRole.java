@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
+
 public class MemberRole extends Entity implements Creatable<MemberRole> {
 
     private Integer memberId;

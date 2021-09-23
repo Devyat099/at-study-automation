@@ -2,7 +2,7 @@ package at.study.automation.model.user;
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.project.Progect;
+import at.study.automation.model.project.Project;
 import at.study.automation.model.role.Role;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
@@ -59,7 +59,7 @@ public class User extends CreatableEntity implements Creatable<User> {
         throw new UnsupportedOperationException();
     }
 
-    public void addProject(Progect progect, List<Role> roles) {
+    public void addProject(Project project, List<Role> roles) {
         // TODO реализовать с помощью sql запроса
     }
 }
