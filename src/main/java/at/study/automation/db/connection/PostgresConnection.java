@@ -39,8 +39,6 @@ public class PostgresConnection implements DataBaseConnection{
     @Override
     @SneakyThrows
     public List<Map<String, Object>> executeQuery(String query, Object... parameters) {
-        // Select * from users Where id = ? and hashpassword = ?
-
 
         PreparedStatement statement = connection.prepareStatement(query);
 
@@ -54,7 +52,7 @@ public class PostgresConnection implements DataBaseConnection{
 
 
         while (rs.next()) {
-            Map<String, Object> oneResult = new TreeMap<>();
+            Map<String, Object> oneResult = new HashMap<>();
             int columnCount = rs.getMetaData().getColumnCount();
             for (int i = 1; i <= columnCount; i++) {
                 String key = rs.getMetaData().getColumnName(i);

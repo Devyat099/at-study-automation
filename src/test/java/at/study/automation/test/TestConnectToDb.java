@@ -47,8 +47,8 @@ public class TestConnectToDb {
 
     @Test
     public void postgresTest(){
-        String query = "Select * from users";
-        List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(query);
+        String query = "SELECT * FROM users WHERE id = ?";
+        List<Map<String, Object>> result = PostgresConnection.INSTANCE.executeQuery(query, 2);
 
     }
 }
