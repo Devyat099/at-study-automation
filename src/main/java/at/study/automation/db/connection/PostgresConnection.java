@@ -46,7 +46,7 @@ public class PostgresConnection implements DataBaseConnection{
             statement.setObject(i+1, parameters[i]);
         }
 
-        ResultSet rs = statement.executeQuery(query);
+        ResultSet rs = statement.executeQuery();
 
         List<Map<String, Object>> result = new ArrayList<>();
 
