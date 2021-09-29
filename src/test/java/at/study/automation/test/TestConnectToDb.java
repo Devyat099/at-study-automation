@@ -2,6 +2,7 @@ package at.study.automation.test;
 
 import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.db.request.EmailRequests;
+import at.study.automation.db.request.UserRequests;
 import at.study.automation.model.user.Email;
 import at.study.automation.model.user.User;
 import lombok.SneakyThrows;
@@ -60,9 +61,16 @@ public class TestConnectToDb {
     public void emailCreate(){
         User user = new User();
         Email email = new Email(user);
-        email.setId(9);
+        email.setUserId(9);
 
         new EmailRequests().create(email);
     }
 
+
+    @Test
+    public void userCreateTest() {
+        User user = new User();
+        new UserRequests().create(user);
+
+    }
 }

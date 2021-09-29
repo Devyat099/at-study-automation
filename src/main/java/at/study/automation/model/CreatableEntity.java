@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 public abstract class CreatableEntity extends Entity {
 
-    protected LocalDateTime createdOn;
-    protected LocalDateTime updatedOn;
+    protected LocalDateTime createdOn = LocalDateTime.now();
+    protected LocalDateTime updatedOn = LocalDateTime.now();
 
 }

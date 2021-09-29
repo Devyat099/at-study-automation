@@ -19,7 +19,7 @@ public class StringUtils {
      * @return строку содержая случайный email
      */
     public static String randomEmail() {
-        return randomString(LATIN_PATTERN, 6) + "@" + randomEnglishString(6) + "." + randomEnglishString(2);
+        return randomString(LATIN_PATTERN, 3) + "@" + randomEnglishString(6) + "." + randomEnglishString(2);
     }
 
     /**

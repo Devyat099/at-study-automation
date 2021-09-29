@@ -7,8 +7,8 @@ import at.study.automation.model.role.Role;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,11 +19,10 @@ import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 @NoArgsConstructor
 @Setter
 @Getter
-
+@Accessors(chain = true)
 public class User extends CreatableEntity implements Creatable<User> {
 
     private String login = "Devyat" + StringUtils.randomEnglishString(10);
-    @NonNull
     private String password = "qwerty12";
     private String salt = StringUtils.randomHexString(32);
     private String hashedPassword = createHashedPassword();
