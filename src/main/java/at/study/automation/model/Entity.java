@@ -9,4 +9,5 @@ import lombok.Setter;
 public abstract class Entity {
 
     protected Integer id;
+
 }

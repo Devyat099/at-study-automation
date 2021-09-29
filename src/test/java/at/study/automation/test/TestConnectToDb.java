@@ -2,9 +2,11 @@ package at.study.automation.test;
 
 import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.db.request.EmailRequests;
+import at.study.automation.db.request.ProjectRequests;
 import at.study.automation.db.request.UserRequests;
-import at.study.automation.model.user.Email;
-import at.study.automation.model.user.User;
+import at.study.automation.model.table_emailAdresses.Email;
+import at.study.automation.model.table_projects.Project;
+import at.study.automation.model.table_users.User;
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 
@@ -71,6 +73,13 @@ public class TestConnectToDb {
     public void userCreateTest() {
         User user = new User();
         new UserRequests().create(user);
+
+    }
+
+    @Test
+    public void projectCreateTest() {
+        Project project = new Project();
+        new ProjectRequests().create(project);
 
     }
 }

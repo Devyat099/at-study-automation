@@ -1,8 +1,8 @@
 package at.study.automation.db.request;
 
 import at.study.automation.db.connection.PostgresConnection;
-import at.study.automation.model.user.Email;
-import at.study.automation.model.user.User;
+import at.study.automation.model.table_emailAdresses.Email;
+import at.study.automation.model.table_users.User;
 
 public class EmailRequests implements Create<Email> {
 

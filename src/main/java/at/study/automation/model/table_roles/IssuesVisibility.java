@@ -1,4 +1,4 @@
-package at.study.automation.model.role;
+package at.study.automation.model.table_roles;
 
 public enum IssuesVisibility {
 

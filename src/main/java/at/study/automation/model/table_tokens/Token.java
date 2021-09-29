@@ -1,8 +1,9 @@
-package at.study.automation.model.user;
+package at.study.automation.model.table_tokens;
 
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
+import at.study.automation.model.table_users.User;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ public class Token extends CreatableEntity implements Creatable<Token> {
 
 
     private Integer userId;
-    private TokenType tokenType = TokenType.API;
+    private TokenType action = TokenType.API;
     private String value = StringUtils.randomHexString(40);
 
 
@@ -23,11 +24,6 @@ public class Token extends CreatableEntity implements Creatable<Token> {
         user.getTokens().add(this);
     }
 
-    public enum TokenType {
-        SESSION,
-        API,
-        FEEDS
-    }
 
     @Override
     public Token create() {

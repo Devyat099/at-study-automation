@@ -1,9 +1,11 @@
-package at.study.automation.model.user;
+package at.study.automation.model.table_users;
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.project.Project;
-import at.study.automation.model.role.Role;
+import at.study.automation.model.table_emailAdresses.Email;
+import at.study.automation.model.table_projects.Project;
+import at.study.automation.model.table_roles.Role;
+import at.study.automation.model.table_tokens.Token;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package at.study.automation.model.project;
+package at.study.automation.model.table_projects;
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
@@ -10,11 +10,11 @@ import lombok.Setter;
 
 public class Project extends CreatableEntity implements Creatable<Project> {
 
-    private String name = "Devyat " + StringUtils.randomEnglishString(5);
-    private String description;
+    private String name = "111Devyat " + StringUtils.randomEnglishString(5);
+    private String description = "description";
 
     // Стартовая страница
-    private String homepage;
+    private String homepage = "HomePage";
 
     // Общедоступность проекта
     private Boolean isPublic = true;
@@ -23,7 +23,7 @@ public class Project extends CreatableEntity implements Creatable<Project> {
     private Integer parentId = null;
 
     // Уникальный индетификатор. задается 1 раз
-    private final String identifier;
+    private final String identifier = StringUtils.randomEnglishString(10);
 
     // Статус
     private Status status = Status.ACTIVE;
@@ -43,9 +43,7 @@ public class Project extends CreatableEntity implements Creatable<Project> {
     // default assigned to id
     private Integer defaultAssignedToId = null;
 
-    public Project(String identifier) {
-        this.identifier = identifier;
-    }
+
 
     @Override
     public Project create() {

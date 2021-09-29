@@ -1,4 +1,4 @@
-package at.study.automation.model.project;
+package at.study.automation.model.table_projects;
 
 public enum Status {
     ACTIVE(1),

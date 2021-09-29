@@ -1,4 +1,4 @@
-package at.study.automation.model.user;
+package at.study.automation.model.table_users;
 
 public enum Status {
     UNREGISTERED(0),
