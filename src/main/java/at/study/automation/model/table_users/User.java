@@ -37,7 +37,7 @@ public class User extends CreatableEntity implements Creatable<User> {
     private String authSourceId;
     private String type = "User";
     private String identityUrl;
-    private MailNotification mailNotification = MailNotification.NONE;
+    private MailNotification mailNotification = MailNotification.ALL;
     private Boolean mustChangePassword = false;
     private LocalDateTime passwordChangedOn;
     private List<Token> tokens = new ArrayList<>();

@@ -63,7 +63,7 @@ public class TestConnectToDb {
     public void emailCreate(){
         User user = new User();
         Email email = new Email(user);
-        email.setUserId(9);
+        //email.setUserId(9);
 
         new EmailRequests().create(email);
     }
