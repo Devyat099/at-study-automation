@@ -42,8 +42,8 @@ public class Role extends CreatableEntity implements Creatable<Role>  {
     // управление участниками(все роли = "true"; при выборе радиобаттона = "false")
     private RolesManaged allRolesManaged = RolesManaged.ALL_MANAGED;
 
-
-    private List<Settings> settings = new ArrayList<>(); //  работа с задачами; (просмотр задач, добавление задач, редактирование задач, добавление примичаний, удаление задач)
+    //  работа с задачами; (просмотр задач, добавление задач, редактирование задач, добавление примичаний, удаление задач)
+    private Integer settings = null;
 
 
     @Override

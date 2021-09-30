@@ -3,9 +3,11 @@ package at.study.automation.test;
 import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.db.request.EmailRequests;
 import at.study.automation.db.request.ProjectRequests;
+import at.study.automation.db.request.RolesRequests;
 import at.study.automation.db.request.UserRequests;
 import at.study.automation.model.table_emailAdresses.Email;
 import at.study.automation.model.table_projects.Project;
+import at.study.automation.model.table_roles.Role;
 import at.study.automation.model.table_users.User;
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;
@@ -80,6 +82,11 @@ public class TestConnectToDb {
     public void projectCreateTest() {
         Project project = new Project();
         new ProjectRequests().create(project);
+    }
 
+    @Test
+    public void roleCreateTest() {
+        Role role = new Role();
+        new RolesRequests().create(role);
     }
 }
