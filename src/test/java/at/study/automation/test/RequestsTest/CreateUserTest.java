@@ -14,41 +14,48 @@ public class CreateUserTest {
 
     @Test
     public void userCreateTest() {
-        // Создание юзера в бд
+        // Создание пользователя
         User userOne = new User();
         new UserRequests().create(userOne);
         Integer userOneId = userOne.getId();
-        System.out.println(userOneId);
+        System.out.println("Таблица users. id = " + userOneId);
 
-        // Создание проекта в бд
+        // Создание проекта
         Project projectOne = new Project();
         new ProjectRequests().create(projectOne);
-        System.out.println(projectOne.getId() + " F"); //;project.getId();
+        System.out.println("Таблица projects. id = " + projectOne.getId());
 
-        // Создание роли в бд
+        // Создание роли
         Role role = new Role();
         new RolesRequests().create(role);
+        System.out.println("Таблица roles. id = " + role.getId());
 
-        // Создание токена в связке с юзером
+        // Создание tokens
         Token tokenOne = new Token(userOne);
         new TokenRequests().create(tokenOne);
-        Integer tokenId = tokenOne.getUserId();
-        System.out.println(tokenId);
+        Integer tokenOneUserId = tokenOne.getUserId();
+        System.out.printf("Таблица tokens. Поле user_id = %d; связан с полем user.id = %d\n", tokenOneUserId, userOneId);
 
-        // Создание емейла в связке с юзером
+        // Создание email
         Email emailOne = new Email(userOne);
         new EmailRequests().create(emailOne);
-        Integer emailId = emailOne.getUserId();
-        System.out.println(emailId);
+        Integer emailUserId = emailOne.getUserId();
+        System.out.printf("Таблица email_addresses. Поле user_id = %d; связан с полем user.id = %d\n", emailUserId, userOneId);
 
-        // Создание members в связке с юзер + проект
-        Members members = new Members(userOne,projectOne);
+        // Создание members
+        Members members = new Members(userOne, projectOne);
         new MemberRequests().create(members);
-        Integer id = members.getId();
-        System.out.println(id);
+        Integer membersUserId = members.getUserId();
+        Integer membersProjectId = members.getProjectId();
 
-        // Создание memberRols в связке member+role
+        System.out.printf("Таблица members. user_id = %d, project_id = %d. Связаны с полями user.id = %d и projects.id = %d\n", membersUserId, membersProjectId, userOneId, projectOne.getId());
+
+
+        // Создание memberRole
         MemberRoles memberRole = new MemberRoles(members, role);
         new MemberRoleRequests().create(memberRole);
+        Integer memberId = memberRole.getMemberId();
+        Integer roleMember = memberRole.getRoleId();
+        System.out.printf("Таблица member_roles, member_id = %d, role_id = %d. Связаны с полями members.id = %d и role.id = %d\n", memberId, roleMember, members.getId(), role.getId());
     }
 }
