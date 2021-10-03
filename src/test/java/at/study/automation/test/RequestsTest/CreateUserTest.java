@@ -1,13 +1,13 @@
 package at.study.automation.test.RequestsTest;
 
 import at.study.automation.db.request.*;
-import at.study.automation.model.table_emailAdresses.Email;
-import at.study.automation.model.table_memberRoles.MemberRoles;
-import at.study.automation.model.table_members.Members;
-import at.study.automation.model.table_projects.Project;
-import at.study.automation.model.table_roles.Role;
-import at.study.automation.model.table_tokens.Token;
-import at.study.automation.model.table_users.User;
+import at.study.automation.model.emailAdresses.Email;
+import at.study.automation.model.memberRoles.MemberRoles;
+import at.study.automation.model.members.Members;
+import at.study.automation.model.projects.Project;
+import at.study.automation.model.roles.Role;
+import at.study.automation.model.tokens.Token;
+import at.study.automation.model.users.User;
 import org.testng.annotations.Test;
 
 public class CreateUserTest {
@@ -56,6 +56,6 @@ public class CreateUserTest {
         new MemberRoleRequests().create(memberRole);
         Integer memberId = memberRole.getMemberId();
         Integer roleMember = memberRole.getRoleId();
-        System.out.printf("Таблица member_roles, member_id = %d, role_id = %d. Связаны с полями members.id = %d и role.id = %d\n", memberId, roleMember, members.getId(), role.getId());
+        System.out.printf("Таблица member_roles. member_id = %d, role_id = %d. Связаны с полями members.id = %d и role.id = %d\n", memberId, roleMember, members.getId(), role.getId());
     }
 }

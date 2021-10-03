@@ -1,9 +1,9 @@
-package at.study.automation.model.table_members;
+package at.study.automation.model.members;
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.table_projects.Project;
-import at.study.automation.model.table_users.User;
+import at.study.automation.model.projects.Project;
+import at.study.automation.model.users.User;
 import lombok.Getter;
 import lombok.Setter;
 

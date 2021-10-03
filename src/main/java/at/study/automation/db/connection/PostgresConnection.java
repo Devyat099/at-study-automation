@@ -1,5 +1,6 @@
 package at.study.automation.db.connection;
 
+import at.study.automation.property.Property;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
@@ -8,21 +9,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
-public class PostgresConnection implements DataBaseConnection{
+public class PostgresConnection implements DataBaseConnection {
 
     public final static DataBaseConnection INSTANCE = new PostgresConnection();
 
-    private String host = "edu-at.dfu.i-teco.ru";
-    private Integer port = 5432;
-    private String dataBase = "db";
-    private String user = "redmine_user";
-    private String password = "redmine_pass";
+
+//    private String host = "edu-at.dfu.i-teco.ru";
+//    private Integer port = 5432;
+//    private String dataBase = "db";
+//    private String user = "redmine_user";
+//    private String password = "redmine_pass";
+//
+    private String host = Property.getStringProperty("db.host");
+    private Integer port = Property.getIntegerProperty("db.port");
+    private String dataBase = Property.getStringProperty("db.database");
+    private String user = Property.getStringProperty("db.user");
+    private String password = Property.getStringProperty("db.pass");
     private Connection connection;
 
-    public PostgresConnection() {
-    connect();
-    }
 
+    public PostgresConnection() {
+        connect();
+    }
 
     @SneakyThrows
     public void connect() {
@@ -34,7 +42,7 @@ public class PostgresConnection implements DataBaseConnection{
         connectionProperties.setProperty("password", password);
         connection = DriverManager.getConnection(url, connectionProperties);
 
-}
+    }
 
     @Override
     @SneakyThrows
@@ -43,7 +51,7 @@ public class PostgresConnection implements DataBaseConnection{
         PreparedStatement statement = connection.prepareStatement(query);
 
         for (int i = 0; i < parameters.length; i++) {
-            statement.setObject(i+1, parameters[i]);
+            statement.setObject(i + 1, parameters[i]);
         }
 
         ResultSet rs = statement.executeQuery();

@@ -1,4 +1,4 @@
-package at.study.automation.model.table_tokens;
+package at.study.automation.model.tokens;
 
 public enum TokenType {
     SESSION,

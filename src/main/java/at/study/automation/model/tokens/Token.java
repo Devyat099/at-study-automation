@@ -1,9 +1,9 @@
-package at.study.automation.model.table_tokens;
+package at.study.automation.model.tokens;
 
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.table_users.User;
+import at.study.automation.model.users.User;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.Setter;

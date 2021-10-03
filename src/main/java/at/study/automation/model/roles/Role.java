@@ -1,4 +1,4 @@
-package at.study.automation.model.table_roles;
+package at.study.automation.model.roles;
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;

@@ -1,9 +1,10 @@
-package at.study.automation.model.table_projects;
+package at.study.automation.model.users;
 
 public enum Status {
+    UNREGISTERED(0),
     ACTIVE(1),
-    CLOSED(5),
-    ARCHIVE(9);
+    UNACCEPTED(2),
+    LOCKED(3);
 
     public final int statusCode;
 

@@ -1,4 +1,4 @@
-package at.study.automation.model.table_roles;
+package at.study.automation.model.roles;
 
 import lombok.AllArgsConstructor;
 

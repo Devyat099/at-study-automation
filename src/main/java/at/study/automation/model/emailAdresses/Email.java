@@ -1,9 +1,9 @@
-package at.study.automation.model.table_emailAdresses;
+package at.study.automation.model.emailAdresses;
 
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.table_users.User;
+import at.study.automation.model.users.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;

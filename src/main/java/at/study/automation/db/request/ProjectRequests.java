@@ -1,7 +1,7 @@
 package at.study.automation.db.request;
 
 import at.study.automation.db.connection.PostgresConnection;
-import at.study.automation.model.table_projects.Project;
+import at.study.automation.model.projects.Project;
 
 public class ProjectRequests implements Create<Project> {
 

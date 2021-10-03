@@ -1,4 +1,4 @@
-package at.study.automation.model.table_users;
+package at.study.automation.model.users;
 
 public enum MailNotification {
     ALL("О всех событиях во всех моих проектах"),

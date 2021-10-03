@@ -1,7 +1,7 @@
 package at.study.automation.db.request;
 
 import at.study.automation.db.connection.PostgresConnection;
-import at.study.automation.model.table_memberRoles.MemberRoles;
+import at.study.automation.model.memberRoles.MemberRoles;
 
 public class MemberRoleRequests implements Create<MemberRoles> {
 

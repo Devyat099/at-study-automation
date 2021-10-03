@@ -5,10 +5,10 @@ import at.study.automation.db.request.EmailRequests;
 import at.study.automation.db.request.ProjectRequests;
 import at.study.automation.db.request.RolesRequests;
 import at.study.automation.db.request.UserRequests;
-import at.study.automation.model.table_emailAdresses.Email;
-import at.study.automation.model.table_projects.Project;
-import at.study.automation.model.table_roles.Role;
-import at.study.automation.model.table_users.User;
+import at.study.automation.model.emailAdresses.Email;
+import at.study.automation.model.projects.Project;
+import at.study.automation.model.roles.Role;
+import at.study.automation.model.users.User;
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 

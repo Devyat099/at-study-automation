@@ -1,8 +1,8 @@
 package at.study.automation.db.request;
 
 import at.study.automation.db.connection.PostgresConnection;
-import at.study.automation.model.table_roles.Permissions;
-import at.study.automation.model.table_roles.Role;
+import at.study.automation.model.roles.Permissions;
+import at.study.automation.model.roles.Role;
 
 import java.util.List;
 import java.util.Locale;

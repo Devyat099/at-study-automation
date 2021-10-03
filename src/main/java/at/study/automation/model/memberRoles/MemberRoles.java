@@ -1,9 +1,9 @@
-package at.study.automation.model.table_memberRoles;
+package at.study.automation.model.memberRoles;
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.table_members.Members;
-import at.study.automation.model.table_roles.Role;
+import at.study.automation.model.members.Members;
+import at.study.automation.model.roles.Role;
 import lombok.Getter;
 import lombok.Setter;
 

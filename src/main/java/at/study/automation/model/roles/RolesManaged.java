@@ -1,4 +1,4 @@
-package at.study.automation.model.table_roles;
+package at.study.automation.model.roles;
 
 public enum RolesManaged {
 

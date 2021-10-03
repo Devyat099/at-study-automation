@@ -1,4 +1,4 @@
-package at.study.automation.model.table_projects;
+package at.study.automation.model.projects;
 
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;

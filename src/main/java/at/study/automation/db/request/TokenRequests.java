@@ -1,7 +1,7 @@
 package at.study.automation.db.request;
 
 import at.study.automation.db.connection.PostgresConnection;
-import at.study.automation.model.table_tokens.Token;
+import at.study.automation.model.tokens.Token;
 
 public class TokenRequests implements Create<Token> {
 
