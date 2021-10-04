@@ -1,7 +1,5 @@
 package at.study.automation.utils;
 
-import org.testng.annotations.Test;
-
 import java.util.Random;
 
 /**
@@ -51,13 +49,5 @@ public class StringUtils {
         return sb.toString();
     }
 
-    @Test
-    public void randomStringTest() {
-
-        System.out.println(randomEmail());
-        System.out.println(randomEnglishString(10));
-        System.out.println(randomString("SASA", 10));
-
-    }
 
 }

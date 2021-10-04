@@ -16,6 +16,7 @@ public class MyFirstTest {
 
         Assert.assertEquals(actualResult, exepectedResult);
     }
+
     @Test
     public void emptyTest() {
 
@@ -26,6 +27,6 @@ public class MyFirstTest {
         int a = 4;
         int b = 0;
 
-        Calculator.divide(a,b);
+        int ab = Calculator.divide(a,b);
     }
 }

@@ -1,11 +1,10 @@
 package at.study.automation.model.users;
 
+import at.study.automation.db.request.UserRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.emailAdresses.Email;
 import at.study.automation.model.projects.Project;
 import at.study.automation.model.roles.Role;
-import at.study.automation.model.tokens.Token;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,7 +40,7 @@ public class User extends CreatableEntity implements Creatable<User> {
     private Boolean mustChangePassword = false;
     private LocalDateTime passwordChangedOn;
     private List<Token> tokens = new ArrayList<>();
-    private List<Email> emails= new ArrayList<>();
+    private List<Email> emails = new ArrayList<>();
 
 
     public void setPassword(String password) {
@@ -50,14 +49,20 @@ public class User extends CreatableEntity implements Creatable<User> {
     }
 
     public String createHashedPassword() {
-        return sha1Hex(salt+ sha1Hex(password));
+        return sha1Hex(salt + sha1Hex(password));
     }
 
     @Override
     public User create() {
+        new UserRequests().create(this);
+
+        tokens.forEach(t -> t.setUserId(id));
         tokens.forEach(Token::create);
+
+        emails.forEach(e -> e.setUserId(id));
         emails.forEach(Email::create);
-        throw new UnsupportedOperationException();
+
+        return this;
     }
 
     public void addProject(Project project, List<Role> roles) {

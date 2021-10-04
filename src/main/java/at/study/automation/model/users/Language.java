@@ -1,12 +1,12 @@
 package at.study.automation.model.users;
 
-public enum  Language {
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public enum Language {
     RUSSIAN("ru"),
     ENGLISH("en");
 
     public final String languageCode;
 
-    Language(String languageCode) {
-        this.languageCode = languageCode;
-    }
 }

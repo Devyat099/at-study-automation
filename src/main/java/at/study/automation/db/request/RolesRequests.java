@@ -4,11 +4,9 @@ import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.model.roles.Permissions;
 import at.study.automation.model.roles.Role;
 
-import java.util.List;
 import java.util.Locale;
 
-public class RolesRequests implements Create<Role>{
-
+public class RolesRequests implements Create<Role> {
 
     @Override
     public void create(Role role) {
@@ -21,29 +19,25 @@ public class RolesRequests implements Create<Role>{
                 role.getPosition(),
                 role.getAssignable(),
                 role.getBuiltin(),
-                listPermissions(role.getPermissions()),
+                addPermissionsToRole(),
                 role.getIssuesVisibility().taskVisibility,
-                role.getUserVisibility().userVisibility,
+                role.getUserVisibility().toString().toLowerCase(Locale.ROOT),
                 role.getTimeEntriesVisibility().timeEntriesVisibility,
-                role.getAllRolesManaged().managed,
+                role.getAllRolesManaged(),
                 role.getSettings()).get(0).get("id");
         role.setId(id);
 
     }
 
-    private static String listPermissions(List<Permissions> per) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("---\n");
-        sb.append("- :" + (Permissions.ADD_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n");
-        sb.append("- :" + (Permissions.EDIT_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n");
-        sb.append("- :" + (Permissions.EDIT_MESSAGES.name()).toLowerCase(Locale.ROOT) + "\n");
-        sb.append("- :" + (Permissions.MANAGE_WIKI.name()).toLowerCase(Locale.ROOT) + "\n");
-        return sb.toString();
+    /**
+     * @return готовая строка для вставки в таблицу roles бд
+     */
+    private static String addPermissionsToRole() {
+        return "---\n" +
+                "- :" + (Permissions.ADD_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
+                "- :" + (Permissions.EDIT_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
+                "- :" + (Permissions.EDIT_MESSAGES.name()).toLowerCase(Locale.ROOT) + "\n" +
+                "- :" + (Permissions.MANAGE_WIKI.name()).toLowerCase(Locale.ROOT) + "\n";
     }
 
-    public static void main(String[] args) {
-        Role role = new Role();
-        String i = listPermissions(role.getPermissions());
-        System.out.println(i);
-    }
 }

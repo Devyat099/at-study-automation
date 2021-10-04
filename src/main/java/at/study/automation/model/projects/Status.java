@@ -1,5 +1,9 @@
 package at.study.automation.model.projects;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+
 public enum Status {
     ACTIVE(1),
     CLOSED(5),
@@ -7,7 +11,4 @@ public enum Status {
 
     public final int statusCode;
 
-    Status(int statusCode) {
-        this.statusCode = statusCode;
-    }
 }

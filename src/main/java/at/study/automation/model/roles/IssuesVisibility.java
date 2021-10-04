@@ -1,5 +1,8 @@
 package at.study.automation.model.roles;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public enum IssuesVisibility {
 
     ALL_TASK_VISIBILITY("all"),
@@ -7,9 +10,5 @@ public enum IssuesVisibility {
     DEFAULT_TASK_VISIBILITY("default");
 
     public final String taskVisibility;
-
-    IssuesVisibility(String taskVisibility) {
-        this.taskVisibility = taskVisibility;
-    }
 }
 

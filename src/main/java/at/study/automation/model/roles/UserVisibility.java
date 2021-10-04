@@ -1,13 +1,9 @@
 package at.study.automation.model.roles;
 
+
 public enum UserVisibility {
 
-    MEMBERS_OF_VISIBLE_PROJECTS("members_of_visible_projects"),
-    ALL("all");
+    MEMBERS_OF_VISIBLE_PROJECTS(),
+    ALL()
 
-public final String userVisibility;
-
-    UserVisibility(String userVisibility) {
-        this.userVisibility = userVisibility;
-    }
 }

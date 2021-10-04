@@ -1,12 +1,10 @@
 package at.study.automation.test.RequestsTest;
 
 import at.study.automation.db.request.*;
-import at.study.automation.model.emailAdresses.Email;
-import at.study.automation.model.memberRoles.MemberRoles;
-import at.study.automation.model.members.Members;
 import at.study.automation.model.projects.Project;
 import at.study.automation.model.roles.Role;
-import at.study.automation.model.tokens.Token;
+import at.study.automation.model.users.Email;
+import at.study.automation.model.users.Token;
 import at.study.automation.model.users.User;
 import org.testng.annotations.Test;
 
@@ -42,20 +40,5 @@ public class CreateUserTest {
         Integer emailUserId = emailOne.getUserId();
         System.out.printf("Таблица email_addresses. Поле user_id = %d; связан с полем user.id = %d\n", emailUserId, userOneId);
 
-        // Создание members
-        Members members = new Members(userOne, projectOne);
-        new MemberRequests().create(members);
-        Integer membersUserId = members.getUserId();
-        Integer membersProjectId = members.getProjectId();
-
-        System.out.printf("Таблица members. user_id = %d, project_id = %d. Связаны с полями user.id = %d и projects.id = %d\n", membersUserId, membersProjectId, userOneId, projectOne.getId());
-
-
-        // Создание memberRole
-        MemberRoles memberRole = new MemberRoles(members, role);
-        new MemberRoleRequests().create(memberRole);
-        Integer memberId = memberRole.getMemberId();
-        Integer roleMember = memberRole.getRoleId();
-        System.out.printf("Таблица member_roles. member_id = %d, role_id = %d. Связаны с полями members.id = %d и role.id = %d\n", memberId, roleMember, members.getId(), role.getId());
     }
 }

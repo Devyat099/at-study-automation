@@ -14,35 +14,17 @@ import java.util.Random;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Role extends CreatableEntity implements Creatable<Role>  {
-
+public class Role extends CreatableEntity implements Creatable<Role> {
 
     private String name = "Devyat " + StringUtils.randomEnglishString(5);
-
-    // Позиция отображения в общем списке ролей
-    private Integer position = (new Random()).nextInt(1999);
-
-    // возможность назначить задачу для этой роли
+    private Integer position = new Random().nextInt(1999);
     private Boolean assignable = true;
-
     private final Integer builtin = 0;
-
-    // enum Права доступа, которые доступны для роли может быть null
     private List<Permissions> permissions = new ArrayList<>();
-
-    // Видимость задач (все задачи = all, только общие задачи = default, задачи созданные или назначенные пользователю = own)
     private IssuesVisibility issuesVisibility = IssuesVisibility.ALL_TASK_VISIBILITY;
-
-    // видимость пользователей members_of_visible_projects или all
     private UserVisibility userVisibility = UserVisibility.ALL;
-
-    // Видимость трудозатрат ("все трудозатраты" = all "Только собственные трудозатраты" = own)
     private TimeEntriesVisibility timeEntriesVisibility = TimeEntriesVisibility.ALL;
-
-    // управление участниками(все роли = "true"; при выборе радиобаттона = "false")
-    private RolesManaged allRolesManaged = RolesManaged.ALL_MANAGED;
-
-    //  работа с задачами; (просмотр задач, добавление задач, редактирование задач, добавление примичаний, удаление задач)
+    private Boolean allRolesManaged = true;
     private Integer settings = null;
 
 
@@ -52,5 +34,5 @@ public class Role extends CreatableEntity implements Creatable<Role>  {
         throw new UnsupportedOperationException();
     }
 
-    }
+}
 

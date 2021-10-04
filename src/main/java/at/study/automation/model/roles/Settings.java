@@ -2,15 +2,10 @@ package at.study.automation.model.roles;
 
 public enum Settings {
 
-    VIEW_TASK(true),
-    ADD_TASK(true),
-    EDITING_TASK(true),
-    ADD_NOTES(true),
-    DELETE_TASK(true);
+    VIEW_TASK(),
+    ADD_TASK(),
+    EDITING_TASK(),
+    ADD_NOTES(),
+    DELETE_TASK()
 
-    public final Boolean settings;
-
-    Settings(Boolean settings) {
-        this.settings = settings;
-    }
 }

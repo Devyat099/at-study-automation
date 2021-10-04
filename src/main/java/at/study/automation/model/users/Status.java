@@ -1,5 +1,8 @@
 package at.study.automation.model.users;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public enum Status {
     UNREGISTERED(0),
     ACTIVE(1),
@@ -8,7 +11,4 @@ public enum Status {
 
     public final int statusCode;
 
-    Status(int statusCode) {
-        this.statusCode = statusCode;
-    }
 }

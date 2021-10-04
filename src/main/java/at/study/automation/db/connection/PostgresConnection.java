@@ -13,13 +13,6 @@ public class PostgresConnection implements DataBaseConnection {
 
     public final static DataBaseConnection INSTANCE = new PostgresConnection();
 
-
-//    private String host = "edu-at.dfu.i-teco.ru";
-//    private Integer port = 5432;
-//    private String dataBase = "db";
-//    private String user = "redmine_user";
-//    private String password = "redmine_pass";
-//
     private String host = Property.getStringProperty("db.host");
     private Integer port = Property.getIntegerProperty("db.port");
     private String dataBase = Property.getStringProperty("db.database");

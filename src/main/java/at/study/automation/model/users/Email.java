@@ -1,9 +1,9 @@
-package at.study.automation.model.emailAdresses;
+package at.study.automation.model.users;
 
 
+import at.study.automation.db.request.EmailRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.users.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -25,10 +25,9 @@ public class Email extends CreatableEntity implements Creatable<Email> {
         user.getEmails().add(this);
     }
 
-
     @Override
     public Email create() {
-        //TODO c помощью sql запроса
-        throw new UnsupportedOperationException();
+        new EmailRequests().create(this);
+        return this;
     }
 }
