@@ -23,7 +23,7 @@ import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 @Accessors(chain = true)
 public class User extends CreatableEntity implements Creatable<User> {
 
-    private String login = "Devyat" + StringUtils.randomEnglishString(10);
+    private String login = "Devyat11"; //+ StringUtils.randomEnglishString(10);
     private String password = "qwerty12";
     private String salt = StringUtils.randomHexString(32);
     private String hashedPassword = createHashedPassword();

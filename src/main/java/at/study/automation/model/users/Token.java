@@ -1,6 +1,7 @@
 package at.study.automation.model.users;
 
 
+import at.study.automation.db.request.TokenRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
 import at.study.automation.utils.StringUtils;
@@ -30,6 +31,7 @@ public class Token extends CreatableEntity implements Creatable<Token> {
 
     @Override
     public Token create() {
-        throw new UnsupportedOperationException();
+        new TokenRequests().create(this);
+        return this;
     }
 }

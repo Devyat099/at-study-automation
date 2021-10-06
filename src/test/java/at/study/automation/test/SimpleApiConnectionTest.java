@@ -1,12 +1,23 @@
 package at.study.automation.test;
 
+import at.study.automation.api.client.RestApiClient;
+import at.study.automation.api.client.RestMethod;
+import at.study.automation.api.client.RestRequest;
+import at.study.automation.api.client.RestResponse;
 import at.study.automation.api.dto.users.UserDto;
 import at.study.automation.api.dto.users.UserInfoDto;
+import at.study.automation.api.rest_assured.RestAssuredClient;
+import at.study.automation.api.rest_assured.RestAssuredRequest;
+import at.study.automation.model.users.Token;
+import at.study.automation.model.users.User;
 import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.Collections;
 
 import static io.restassured.RestAssured.given;
 
@@ -53,4 +64,24 @@ public class SimpleApiConnectionTest {
                 .log().all()
                 .statusCode(201);
     }
+
+    @Test
+    public void testApiClient(){
+        User user = new User(){{
+            setIsAdmin(true);
+            setTokens(Collections.singletonList(new Token(this)));
+        }}.create();
+
+
+        RestApiClient apiClient = new RestAssuredClient(user);
+        RestRequest request = new RestAssuredRequest(RestMethod.GET, "/users.json", null,null,null);
+
+
+        RestResponse response = apiClient.execute(request);
+
+        Assert.assertEquals(response.getStatusCode(), 200);
+
+    }
+
+
 }
