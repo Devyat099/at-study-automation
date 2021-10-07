@@ -6,6 +6,7 @@ import at.study.automation.api.client.RestRequest;
 import at.study.automation.api.client.RestResponse;
 import at.study.automation.api.dto.users.UserDto;
 import at.study.automation.api.dto.users.UserInfoDto;
+import at.study.automation.api.dto.users.UsersListDto;
 import at.study.automation.api.rest_assured.RestAssuredClient;
 import at.study.automation.api.rest_assured.RestAssuredRequest;
 import at.study.automation.model.users.Token;
@@ -43,6 +44,7 @@ public class SimpleApiConnectionTest {
     public void testNoAuthGetUsers() {
         given()
                 .baseUri("http://edu-at.dfu.i-teco.ru/")
+                .contentType(ContentType.JSON)
                 .log().all()
                 .request(Method.GET, "/users.json")
                 .then()
@@ -53,8 +55,13 @@ public class SimpleApiConnectionTest {
     @Test
     public void testUserCreation() {
         UserInfoDto body = new UserInfoDto(
-                new UserDto("login321", "firstname23123",
-                        "lastname14124", "jp_lanag@yahfodao.fr", "password1231")
+                new UserDto()
+                .setLogin("login123321")
+                .setLastName("firstname31223123")
+                .setFirstName("lastname14124")
+                .setMail("jp_l312anag@yahfodao.fr")
+                .setPassword("password1231")
+
         );
 
         given(ADMIN_AUTH_SPECIFICATION).contentType(ContentType.JSON)
@@ -81,6 +88,10 @@ public class SimpleApiConnectionTest {
 
         Assert.assertEquals(response.getStatusCode(), 200);
 
+        UsersListDto body = response.getPayload(UsersListDto.class);
+
+        Assert.assertEquals(body.getLimit().intValue(), 25);
+        Assert.assertEquals(body.getUsers().get(0).getLogin(), "admin");
     }
 
 

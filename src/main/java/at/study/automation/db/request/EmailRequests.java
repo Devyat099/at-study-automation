@@ -4,7 +4,10 @@ import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.model.users.Email;
 import at.study.automation.model.users.User;
 
-public class EmailRequests implements Create<Email> {
+import java.util.List;
+import java.util.Map;
+
+public class EmailRequests extends BaseRequests implements Create<Email>, Delete, Read<Email> {
 
     private User user;
 
@@ -23,5 +26,28 @@ public class EmailRequests implements Create<Email> {
                 email.getCreatedOn(),
                 email.getUpdatedOn()).get(0).get("id");
         email.setId(id);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        String query = "DELETE FROM public.users WHERE id = ?";
+        PostgresConnection.INSTANCE.executeQuery(query, id);
+    }
+
+    @Override
+    public Email read(Integer id) {
+        String query = "SELECT * FROM public.email_addresses WHERE id = ?";
+        List<Map<String, Object>> queryResult = PostgresConnection.INSTANCE.executeQuery(query, id);
+        return from(queryResult.get(0), user);
+    }
+//TODO в порядок метод
+    private Email from(Map<String, Object> data, User user) {
+        return (Email) new Email(user)
+                .setAddress((String) data.get("address"))
+                .setIsDefault((Boolean) data.get("is_default"))
+                .setUpdatedOn(toLocalDate(data.get("updated_on")))
+                .setNotify((Boolean) data.get("notify"))
+                .setCreatedOn(toLocalDate(data.get("created_on")))
+                .setId((Integer) data.get("id"));
     }
 }
