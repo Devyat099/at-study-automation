@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class UserDto {
 
     private Integer id;
@@ -33,4 +34,5 @@ public class UserDto {
     @SerializedName("last_login_on")
     private LocalDateTime lastLoginOn;
 
+    private int status;
 }

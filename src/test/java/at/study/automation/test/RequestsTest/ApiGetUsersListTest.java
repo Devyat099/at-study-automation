@@ -1,4 +1,4 @@
-package at.study.automation.test;
+package at.study.automation.test.RequestsTest;
 
 import at.study.automation.api.client.RestApiClient;
 import at.study.automation.api.client.RestMethod;

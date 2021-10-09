@@ -3,7 +3,12 @@ package at.study.automation.db.request;
 import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.model.users.User;
 
-public class UserRequests implements Create<User>{
+import java.util.List;
+import java.util.Map;
+
+public class UserRequests implements Create<User>, Read<User> {
+
+    private User user;
 
     @Override
     public void create(User user) {
@@ -38,4 +43,23 @@ public class UserRequests implements Create<User>{
         user.setId(id);
     }
 
+
+    @Override
+    public User read(Integer id) {
+        String query = "SELECT * FROM users WHERE id = ?";
+        List<Map<String, Object>> queryResult = PostgresConnection.INSTANCE.executeQuery(query, id);
+        return from(queryResult.get(0));
+    }
+
+    private User from(Map<String, Object> data) {
+        User user = new User();
+        user.setId((Integer) data.get("id"));
+        user.setLogin((String) data.get("login"));
+        user.setFirstName((String) data.get("firstname"));
+        user.setLastName((String) data.get("lastname"));
+
+        //user.setStatus((Status) data.get("status"));
+
+        return user;
+    }
 }

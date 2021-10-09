@@ -41,4 +41,24 @@ public class CreateUserTest {
         System.out.printf("Таблица email_addresses. Поле user_id = %d; связан с полем user.id = %d\n", emailUserId, userOneId);
 
     }
+
+    @Test
+    public void readEmailFromDataBaseTest(){
+        User user = new User();
+        user.setId(2);
+
+        Email email = new EmailRequests(user).read(23641);
+        System.out.println(email.getAddress());
+        System.out.println(email.getUserId());
+
+    }
+    @Test
+    public void readUserFromDataBaseTest(){
+
+        User user = new UserRequests().read(1);
+        System.out.println(user.getId());
+        System.out.println(user.getId());
+
+    }
+
 }

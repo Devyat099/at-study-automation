@@ -34,4 +34,5 @@ public class Token extends CreatableEntity implements Creatable<Token> {
         new TokenRequests().create(this);
         return this;
     }
+
 }

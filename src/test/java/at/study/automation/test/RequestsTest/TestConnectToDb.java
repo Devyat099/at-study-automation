@@ -1,4 +1,4 @@
-package at.study.automation.test;
+package at.study.automation.test.RequestsTest;
 
 import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.db.request.EmailRequests;
@@ -88,5 +88,17 @@ public class TestConnectToDb {
     public void roleCreateTest() {
         Role role = new Role();
         new RolesRequests().create(role);
+    }
+
+    @Test
+    public void readEmailFromDataBaseTest(){
+        User user = new User();
+        user.setId(2);
+
+        Email email = new EmailRequests(user).read(23641);
+        System.out.println(email.getAddress());
+        System.out.println(email.getUserId());
+
+
     }
 }

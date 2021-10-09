@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 @AllArgsConstructor
+
 public class UsersListDto {
 
     private List<UserDto> users;
@@ -19,4 +20,5 @@ public class UsersListDto {
 
     private Integer offset;
     private Integer limit;
+    private Integer status;
 }

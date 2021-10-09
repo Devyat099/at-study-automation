@@ -3,10 +3,14 @@ package at.study.automation.db.request;
 import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.model.users.Email;
 import at.study.automation.model.users.User;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Map;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class EmailRequests extends BaseRequests implements Create<Email>, Delete, Read<Email> {
 
     private User user;
@@ -40,14 +44,22 @@ public class EmailRequests extends BaseRequests implements Create<Email>, Delete
         List<Map<String, Object>> queryResult = PostgresConnection.INSTANCE.executeQuery(query, id);
         return from(queryResult.get(0), user);
     }
-//TODO в порядок метод
+
+    /**
+     *
+     * @param data - мапа из которой вычитываем значения и устанавливаем для возвращаемого Email
+     * @param user - для создания обьекта Email необходим обьект класса User
+     * @return - возвращает объект класса Email из Map
+     */
     private Email from(Map<String, Object> data, User user) {
-        return (Email) new Email(user)
-                .setAddress((String) data.get("address"))
-                .setIsDefault((Boolean) data.get("is_default"))
-                .setUpdatedOn(toLocalDate(data.get("updated_on")))
-                .setNotify((Boolean) data.get("notify"))
-                .setCreatedOn(toLocalDate(data.get("created_on")))
-                .setId((Integer) data.get("id"));
+        Email email = new Email(user);
+        email.setAddress((String) data.get("address"));
+        email.setIsDefault((Boolean) data.get("is_default"));
+        email.setNotify((Boolean) data.get("notify"));
+        email.setCreatedOn(toLocalDate(data.get("created_on")));
+        email.setUpdatedOn(toLocalDate(data.get("updated_on")));
+        email.setId((Integer) data.get("id"));
+
+        return email;
     }
 }

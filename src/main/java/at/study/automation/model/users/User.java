@@ -3,8 +3,6 @@ package at.study.automation.model.users;
 import at.study.automation.db.request.UserRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
-import at.study.automation.model.projects.Project;
-import at.study.automation.model.roles.Role;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +21,7 @@ import static org.apache.commons.codec.digest.DigestUtils.sha1Hex;
 @Accessors(chain = true)
 public class User extends CreatableEntity implements Creatable<User> {
 
-    private String login = "Devyat11"; //+ StringUtils.randomEnglishString(10);
+    private String login = "Devyat"+ StringUtils.randomEnglishString(10);
     private String password = "qwerty12";
     private String salt = StringUtils.randomHexString(32);
     private String hashedPassword = createHashedPassword();
@@ -65,7 +63,4 @@ public class User extends CreatableEntity implements Creatable<User> {
         return this;
     }
 
-    public void addProject(Project project, List<Role> roles) {
-        // TODO реализовать с помощью sql запроса
-    }
 }
