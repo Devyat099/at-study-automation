@@ -57,8 +57,7 @@ public class UserRequests implements Create<User>, Read<User> {
         user.setLogin((String) data.get("login"));
         user.setFirstName((String) data.get("firstname"));
         user.setLastName((String) data.get("lastname"));
-
-        //user.setStatus((Status) data.get("status"));
+        //user.setStatus(Status.of(data.get("status").toString()));
 
         return user;
     }

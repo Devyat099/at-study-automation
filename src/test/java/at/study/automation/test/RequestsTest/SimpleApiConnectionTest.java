@@ -11,7 +11,6 @@ import at.study.automation.api.rest_assured.RestAssuredClient;
 import at.study.automation.api.rest_assured.RestAssuredRequest;
 import at.study.automation.model.users.Token;
 import at.study.automation.model.users.User;
-import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.specification.RequestSpecification;
@@ -20,8 +19,8 @@ import org.testng.annotations.Test;
 
 import java.util.Collections;
 
+import static at.study.automation.api.rest_assured.GsonProvider.GSON;
 import static io.restassured.RestAssured.given;
-
 public class SimpleApiConnectionTest {
 
 
@@ -65,7 +64,8 @@ public class SimpleApiConnectionTest {
         );
 
         given(ADMIN_AUTH_SPECIFICATION).contentType(ContentType.JSON)
-                .body(new Gson().toJson(body))
+
+                .body(GSON.toJson(body))
                 .request(Method.POST, "/users.json")
                 .then()
                 .log().all()

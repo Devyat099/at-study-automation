@@ -2,6 +2,8 @@ package at.study.automation.model.users;
 
 import lombok.AllArgsConstructor;
 
+import java.util.stream.Stream;
+
 @AllArgsConstructor
 
 public enum Status {
@@ -12,4 +14,10 @@ public enum Status {
 
     public final int statusCode;
 
+    public static Status of(int description) {
+        return Stream.of(values())
+                .filter(status -> status.equals(description))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Не найден обьект enum Status"));
+    }
 }

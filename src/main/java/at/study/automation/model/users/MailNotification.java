@@ -12,4 +12,5 @@ public enum MailNotification {
 
     private final String description;
 
+
 }

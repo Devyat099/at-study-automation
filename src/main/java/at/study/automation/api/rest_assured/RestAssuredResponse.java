@@ -1,13 +1,14 @@
 package at.study.automation.api.rest_assured;
 
 import at.study.automation.api.client.RestResponse;
-import com.google.gson.Gson;
 import io.restassured.http.Header;
 import io.restassured.response.Response;
 import lombok.Getter;
 
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static at.study.automation.api.rest_assured.GsonProvider.GSON;
 
 @Getter
 public class RestAssuredResponse implements RestResponse {
@@ -27,7 +28,7 @@ public class RestAssuredResponse implements RestResponse {
 
     @Override
     public <T> T getPayload(Class<T> clazz) {
-        return new Gson().fromJson(payload, clazz);
+        return GSON.fromJson(payload, clazz);
     }
 
 

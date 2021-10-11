@@ -10,12 +10,13 @@ import at.study.automation.api.rest_assured.RestAssuredClient;
 import at.study.automation.api.rest_assured.RestAssuredRequest;
 import at.study.automation.model.users.Token;
 import at.study.automation.model.users.User;
-import com.google.gson.Gson;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
+
+import static at.study.automation.api.rest_assured.GsonProvider.GSON;
 
 public class CreateUserByNotAdminUserTest {
 
@@ -39,7 +40,8 @@ public class CreateUserByNotAdminUserTest {
                         .setPassword("password1231")
         );
 
-        String body = new Gson().toJson(dto);
+
+        String body = GSON.toJson(dto);
 
 
         apiClient = new RestAssuredClient(user);

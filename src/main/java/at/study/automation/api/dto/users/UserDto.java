@@ -1,7 +1,6 @@
 package at.study.automation.api.dto.users;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -10,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Data
 @Accessors(chain = true)
-@AllArgsConstructor
 @NoArgsConstructor
 
 public class UserDto {
@@ -34,5 +32,5 @@ public class UserDto {
     @SerializedName("last_login_on")
     private LocalDateTime lastLoginOn;
 
-    private int status;
+    private Integer status;
 }
