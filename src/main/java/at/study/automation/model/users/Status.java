@@ -14,10 +14,10 @@ public enum Status {
 
     public final int statusCode;
 
-    public static Status of(int description) {
+    public static Status of(int st) {
         return Stream.of(values())
-                .filter(status -> status.equals(description))
+                .filter(status -> status.statusCode == st)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Не найден обьект enum Status"));
+                .orElseThrow(() -> new IllegalArgumentException("Не найден объект enum Status"));
     }
 }
