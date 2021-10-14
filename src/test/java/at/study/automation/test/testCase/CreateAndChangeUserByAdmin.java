@@ -1,4 +1,4 @@
-package at.study.automation.test.tk;
+package at.study.automation.test.testCase;
 
 import at.study.automation.api.client.RestApiClient;
 import at.study.automation.api.client.RestMethod;
@@ -36,7 +36,7 @@ public class CreateAndChangeUserByAdmin {
      * 2. У пользователя есть доступ к API и ключ API
      */
     @BeforeClass
-    public void createUsers() {
+    private void createTestUsers() {
 
         adminUser = new User() {{
             setTokens(Collections.singletonList(new Token(this)));
@@ -59,7 +59,7 @@ public class CreateAndChangeUserByAdmin {
         return new RestAssuredRequest(method, uri, null, null, body);
     }
 
-    private String bodyForRequest(User user){
+    private String bodyForRequest(User user) {
 
         userApi = new UserInfoDto(
                 new UserDto()
@@ -72,7 +72,7 @@ public class CreateAndChangeUserByAdmin {
 
         return new Gson().toJson(userApi);
 
-        }
+    }
 
 
     @Test
@@ -89,24 +89,20 @@ public class CreateAndChangeUserByAdmin {
         Assert.assertEquals(readUser.getFirstName(), responseData.getUser().getFirstName());
         Assert.assertEquals(readUser.getLastName(), responseData.getUser().getLastName());
 
-
-
         // 2. Запрос POST на создание пользователя повторно с тем же телом запроса
         RestResponse responseCheck2 = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
         Assert.assertEquals(responseCheck2.getStatusCode(), 422);
 
-        // проверка корректности ошибок, содержащихся в ответе
+        // проверка ожидаемых ошибок, содержащихся в ответе
         UserErrorsDto errorsDto = responseCheck2.getPayload(UserErrorsDto.class);
         Assert.assertTrue(errorsDto.getErrors().toString().contains("Email уже существует"));
         Assert.assertTrue(errorsDto.getErrors().toString().contains("Пользователь уже существует"));
-
 
         // 3. Запрос POST на создание пользователя повторно с тем же телом запроса, при этом изменив "email" на невалидный, а "password" - на строку из 4 символов
         testUser.setPassword("pass");
         testUser.getEmails().get(0).setAddress("на невалидный");
         RestResponse responseCheck3 = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
         Assert.assertEquals(responseCheck3.getStatusCode(), 422);
-
 
         // 4. Запрос PUT на изменение пользователя. Данные из ответа запроса, выполненного в шаге №1, но поле status = 1
         testUser.setStatus(Status.ACTIVE);
@@ -115,7 +111,7 @@ public class CreateAndChangeUserByAdmin {
         String uriId = String.format("/users/%s.json", responseData.getUser().getId());
         RestResponse responseCheck4 = apiClient.execute(request(RestMethod.PUT, uriId, bodyForRequest(testUser)));
 
-        Assert.assertEquals(responseCheck4.getStatusCode(),204);
+        Assert.assertEquals(responseCheck4.getStatusCode(), 204);
         User r1eadUser = new UserRequests().read(responseData.getUser().getId());
         Assert.assertEquals(testUser.getLogin(), r1eadUser.getLogin());
 
@@ -127,10 +123,14 @@ public class CreateAndChangeUserByAdmin {
         Assert.assertEquals(responseData1.getUser().getStatus().toString(), "1");
 
 
-        // 6. Отправить запрос DELETE на удаление пользователя
+        // 6. Запрос DELETE на удаление пользователя
         RestResponse responseCheck6 = apiClient.execute(request(RestMethod.DELETE, uriId, null));
         Assert.assertEquals(responseCheck6.getStatusCode(), 204);
-        //TODO User r1eadUser1 = new UserRequests().read(responseData.getUser().getId());
+
+        // 7.Запрос DELETE на удаление пользователя повторно
+        RestResponse responseCheck7 = apiClient.execute(request(RestMethod.DELETE, uriId, null));
+        Assert.assertEquals(responseCheck7.getStatusCode(), 404);
+
 
     }
 }

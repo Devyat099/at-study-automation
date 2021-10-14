@@ -16,6 +16,9 @@ public class UserDto {
     private Integer id;
     private String login;
 
+    @SerializedName("admin")
+    private Boolean isAdmin;
+
     @SerializedName("firstname")
     private String firstName;
 
@@ -25,6 +28,9 @@ public class UserDto {
     private String mail;
 
     private String password;
+
+    @SerializedName("api_key")
+    private String apiKey;
 
     @SerializedName("created_on")
     private LocalDateTime createdOn;
