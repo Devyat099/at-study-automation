@@ -1,4 +1,4 @@
-package at.study.automation.test.testCase;
+package at.study.automation.test.apiTestCase;
 
 import at.study.automation.api.client.RestApiClient;
 import at.study.automation.api.client.RestMethod;
@@ -52,20 +52,21 @@ public class GetUsersByAPI {
     @Test
     public void getUserTest() {
 
+        // 1. Запрос GET на получение текущего пользователя используя ключ АПИ
         String uriIdTestUser = String.format("/users/%s.json", testUser.getId());
         String uriIdMainUser = String.format("/users/%s.json", mainUser.getId());
-        RestResponse responseCheck1 = apiClient.execute(request(RestMethod.GET, uriIdMainUser));
-        Assert.assertEquals(responseCheck1.getStatusCode(), 200);
-        UserInfoDto responseData1 = responseCheck1.getPayload(UserInfoDto.class);
+        RestResponse responseFromGetRequestThisUser = apiClient.execute(request(RestMethod.GET, uriIdMainUser));
+        Assert.assertEquals(responseFromGetRequestThisUser.getStatusCode(), 200);
+        UserInfoDto responseData1 = responseFromGetRequestThisUser.getPayload(UserInfoDto.class);
 
-        // проверяем что поля админ и апи доступны
         Assert.assertNotNull(responseData1.getUser().getIsAdmin());
         Assert.assertNotNull(responseData1.getUser().getApiKey());
 
 
-        RestResponse responseCheck2 = apiClient.execute(request(RestMethod.GET, uriIdTestUser));
-        Assert.assertEquals(responseCheck2.getStatusCode(), 200);
-        UserInfoDto responseData2 = responseCheck2.getPayload(UserInfoDto.class);
+        // 2. Запрос GET на получение другого пользователя используя ключ АПИ
+        RestResponse responseFromGetRequestOtherUser = apiClient.execute(request(RestMethod.GET, uriIdTestUser));
+        Assert.assertEquals(responseFromGetRequestOtherUser.getStatusCode(), 200);
+        UserInfoDto responseData2 = responseFromGetRequestOtherUser.getPayload(UserInfoDto.class);
 
         Assert.assertNull(responseData2.getUser().getIsAdmin());
         Assert.assertNull(responseData2.getUser().getApiKey());

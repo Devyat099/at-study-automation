@@ -1,4 +1,4 @@
-package at.study.automation.test.testCase;
+package at.study.automation.test.apiTestCase;
 
 import at.study.automation.api.client.RestApiClient;
 import at.study.automation.api.client.RestMethod;
@@ -48,18 +48,18 @@ public class DeleteUsersByAPI {
     }
 
     @Test
-    public void deleteUers() {
-        // 1. Запрос DELETE на удаление пользователя без ключа API
+    public void deleteUsers() {
+        // 1. Запрос DELETE на удаление пользователя без ключа API - пользователь не удален
         String uriIdTestUser = String.format("/users/%s.json", testUser.getId());
-        RestResponse responseCheck1 = apiClient.execute(request(RestMethod.DELETE, uriIdTestUser));
-        Assert.assertEquals(responseCheck1.getStatusCode(), 403);
+        RestResponse responseFromDeleteRequestUserNotApi = apiClient.execute(request(RestMethod.DELETE, uriIdTestUser));
+        Assert.assertEquals(responseFromDeleteRequestUserNotApi.getStatusCode(), 403);
         User ur = new UserRequests().read(testUser.getId());
         Assert.assertNotNull(ur);
 
-        // 2. Запрос DELETE на удаление пользователя с ключом API (самого себя)
+        // 2. Запрос DELETE на удаление пользователя с ключом API (самого себя) - пользователь не удален
         String uriIdMainUser = String.format("/users/%s.json", mainUser.getId());
-        RestResponse responseCheck2 = apiClient.execute(request(RestMethod.DELETE, uriIdMainUser));
-        Assert.assertEquals(responseCheck2.getStatusCode(), 403);
+        RestResponse responseFromDeleteRequestUserWithApi = apiClient.execute(request(RestMethod.DELETE, uriIdMainUser));
+        Assert.assertEquals(responseFromDeleteRequestUserWithApi.getStatusCode(), 403);
         User ur1 = new UserRequests().read(mainUser.getId());
         Assert.assertNotNull(ur1);
     }

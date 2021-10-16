@@ -1,4 +1,4 @@
-package at.study.automation.test.testCase;
+package at.study.automation.test.apiTestCase;
 
 import at.study.automation.api.client.RestApiClient;
 import at.study.automation.api.client.RestMethod;
@@ -62,11 +62,11 @@ public class CreateUserByNotAdmin {
     }
 
     @Test
-    public void createUserByNotAdmin(){
+    public void createUserByNotAdmin() {
 
         // 1. Запрос POST на создание пользователя не админом
-        RestResponse responseCheck1 = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
-        Assert.assertEquals(responseCheck1.getStatusCode(), 403);
+        RestResponse responseFromPostRequestCreateNewUserNotAdmin = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
+        Assert.assertEquals(responseFromPostRequestCreateNewUserNotAdmin.getStatusCode(), 403);
     }
 
 }

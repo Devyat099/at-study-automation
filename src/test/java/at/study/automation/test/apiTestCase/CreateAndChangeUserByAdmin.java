@@ -1,4 +1,4 @@
-package at.study.automation.test.testCase;
+package at.study.automation.test.apiTestCase;
 
 import at.study.automation.api.client.RestApiClient;
 import at.study.automation.api.client.RestMethod;
@@ -78,58 +78,58 @@ public class CreateAndChangeUserByAdmin {
     @Test
     public void createUserByAdminUserTest() {
         // 1. Запрос POST на создание пользователя, пользователь должен иметь status = 2
-        RestResponse responseCheck1 = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
-        UserInfoDto responseData = responseCheck1.getPayload(UserInfoDto.class);
+        RestResponse responseFromPostRequest = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
+        UserInfoDto responseDataFromPostRequest = responseFromPostRequest.getPayload(UserInfoDto.class);
 
-        Assert.assertEquals(responseCheck1.getStatusCode(), 201);
-        Assert.assertEquals(responseData.getUser().getStatus().toString(), "2");
+        Assert.assertEquals(responseFromPostRequest.getStatusCode(), 201);
+        Assert.assertEquals(responseDataFromPostRequest.getUser().getStatus().toString(), "2");
 
         // Проверка создания в БД пользователя
-        User readUser = new UserRequests().read(responseData.getUser().getId());
-        Assert.assertEquals(readUser.getFirstName(), responseData.getUser().getFirstName());
-        Assert.assertEquals(readUser.getLastName(), responseData.getUser().getLastName());
+        User readUserFromDataBase = new UserRequests().read(responseDataFromPostRequest.getUser().getId());
+        Assert.assertEquals(readUserFromDataBase.getFirstName(), responseDataFromPostRequest.getUser().getFirstName());
+        Assert.assertEquals(readUserFromDataBase.getLastName(), responseDataFromPostRequest.getUser().getLastName());
 
         // 2. Запрос POST на создание пользователя повторно с тем же телом запроса
-        RestResponse responseCheck2 = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
-        Assert.assertEquals(responseCheck2.getStatusCode(), 422);
+        RestResponse responseFromPostRequestRepeat = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
+        Assert.assertEquals(responseFromPostRequestRepeat.getStatusCode(), 422);
 
         // проверка ожидаемых ошибок, содержащихся в ответе
-        UserErrorsDto errorsDto = responseCheck2.getPayload(UserErrorsDto.class);
-        Assert.assertTrue(errorsDto.getErrors().toString().contains("Email уже существует"));
-        Assert.assertTrue(errorsDto.getErrors().toString().contains("Пользователь уже существует"));
+        UserErrorsDto errorsFromPostRequestRepeat = responseFromPostRequestRepeat.getPayload(UserErrorsDto.class);
+        Assert.assertTrue(errorsFromPostRequestRepeat.getErrors().toString().contains("Email уже существует"));
+        Assert.assertTrue(errorsFromPostRequestRepeat.getErrors().toString().contains("Пользователь уже существует"));
 
         // 3. Запрос POST на создание пользователя повторно с тем же телом запроса, при этом изменив "email" на невалидный, а "password" - на строку из 4 символов
         testUser.setPassword("pass");
         testUser.getEmails().get(0).setAddress("на невалидный");
-        RestResponse responseCheck3 = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
-        Assert.assertEquals(responseCheck3.getStatusCode(), 422);
+        RestResponse responseFromRepeatPostRequestWithInvalidEmailPassword = apiClient.execute(request(RestMethod.POST, "/users.json", bodyForRequest(testUser)));
+        Assert.assertEquals(responseFromRepeatPostRequestWithInvalidEmailPassword.getStatusCode(), 422);
 
         // 4. Запрос PUT на изменение пользователя. Данные из ответа запроса, выполненного в шаге №1, но поле status = 1
         testUser.setStatus(Status.ACTIVE);
         testUser.setPassword("getPassword()");
         testUser.getEmails().get(0).setAddress(randomEmail());
-        String uriId = String.format("/users/%s.json", responseData.getUser().getId());
-        RestResponse responseCheck4 = apiClient.execute(request(RestMethod.PUT, uriId, bodyForRequest(testUser)));
+        String uriId = String.format("/users/%s.json", responseDataFromPostRequest.getUser().getId());
+        RestResponse responseFromPutRequest = apiClient.execute(request(RestMethod.PUT, uriId, bodyForRequest(testUser)));
 
-        Assert.assertEquals(responseCheck4.getStatusCode(), 204);
-        User r1eadUser = new UserRequests().read(responseData.getUser().getId());
+        Assert.assertEquals(responseFromPutRequest.getStatusCode(), 204);
+        User r1eadUser = new UserRequests().read(responseDataFromPostRequest.getUser().getId());
         Assert.assertEquals(testUser.getLogin(), r1eadUser.getLogin());
 
 
         // 5. Запрос GET на получение пользователя
-        RestResponse responseCheck5 = apiClient.execute(request(RestMethod.GET, uriId, bodyForRequest(testUser)));
-        UserInfoDto responseData1 = responseCheck5.getPayload(UserInfoDto.class);
-        Assert.assertEquals(responseCheck5.getStatusCode(), 200);
+        RestResponse responseGetCreatedUser = apiClient.execute(request(RestMethod.GET, uriId, bodyForRequest(testUser)));
+        UserInfoDto responseData1 = responseGetCreatedUser.getPayload(UserInfoDto.class);
+        Assert.assertEquals(responseGetCreatedUser.getStatusCode(), 200);
         Assert.assertEquals(responseData1.getUser().getStatus().toString(), "1");
 
 
         // 6. Запрос DELETE на удаление пользователя
-        RestResponse responseCheck6 = apiClient.execute(request(RestMethod.DELETE, uriId, null));
-        Assert.assertEquals(responseCheck6.getStatusCode(), 204);
+        RestResponse responseDeleteCreatedUser = apiClient.execute(request(RestMethod.DELETE, uriId, null));
+        Assert.assertEquals(responseDeleteCreatedUser.getStatusCode(), 204);
 
         // 7.Запрос DELETE на удаление пользователя повторно
-        RestResponse responseCheck7 = apiClient.execute(request(RestMethod.DELETE, uriId, null));
-        Assert.assertEquals(responseCheck7.getStatusCode(), 404);
+        RestResponse responseDeleteCreatedUserRepeat = apiClient.execute(request(RestMethod.DELETE, uriId, null));
+        Assert.assertEquals(responseDeleteCreatedUserRepeat.getStatusCode(), 404);
 
 
     }
