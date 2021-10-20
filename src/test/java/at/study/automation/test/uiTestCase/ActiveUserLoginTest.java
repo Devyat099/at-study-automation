@@ -1,5 +1,6 @@
 package at.study.automation.test.uiTestCase;
 
+import at.study.automation.model.users.Status;
 import at.study.automation.model.users.User;
 import at.study.automation.property.Property;
 import at.study.automation.ui.HeaderPage;
@@ -10,9 +11,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AdminLoginTestRefactor {
+public class ActiveUserLoginTest {
 
-    private User admin;
+    private User userActive;
     private WebDriver driver;
     private HeaderPage headerPage;
     private LoginPage loginPage;
@@ -20,8 +21,9 @@ public class AdminLoginTestRefactor {
 
     @BeforeMethod
     private void prepareFixtures() {
-        admin = new User() {{
-            setIsAdmin(true);
+        userActive = new User() {{
+            setIsAdmin(false);
+            setStatus(Status.ACTIVE);
         }}.create();
 
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
@@ -34,28 +36,28 @@ public class AdminLoginTestRefactor {
     }
 
     @Test
-    public void positiveAdminLoginTest() throws InterruptedException {
-
+    public void positiveActiveUserLoginTest() throws InterruptedException {
         headerPage.loginButton.click();
 
         Thread.sleep(1000);
-        loginPage.login(admin);
 
-        // Наличие/отсутствие элементов на странице
+        loginPage.login(userActive);
+
         Assert.assertEquals(headerPage.myAccount.getText(), "Моя учётная запись");
-        Assert.assertEquals(headerPage.whoEntered.getText(), "Вошли как " + admin.getLogin());
+        Assert.assertEquals(headerPage.whoEntered.getText(), "Вошли как " + userActive.getLogin());
         Assert.assertEquals(headerPage.homePage.getText(), "Домашняя страница");
         Assert.assertEquals(headerPage.myPage.getText(), "Моя страница");
         Assert.assertEquals(headerPage.projects.getText(), "Проекты");
-        Assert.assertEquals(headerPage.administration.getText(), "Администрирование");
         Assert.assertEquals(headerPage.help.getText(), "Помощь");
         Assert.assertEquals(headerPage.logout.getText(), "Выйти");
+        Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.administration));
         Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.loginButton));
         Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.registerButton));
         Assert.assertTrue(headerPage.search.isDisplayed());
 
         driver.quit();
 
-
     }
 }
+
+

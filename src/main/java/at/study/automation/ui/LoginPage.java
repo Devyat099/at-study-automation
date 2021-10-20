@@ -17,6 +17,8 @@ public class LoginPage extends Page{
     @FindBy(xpath = "//input[@id='login-submit']")
     private WebElement signInButton;
 
+    @FindBy(xpath = "//div[@id='content']//div[@class='flash error']")
+    public WebElement errorlogin;
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
