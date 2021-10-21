@@ -5,12 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ProjectPage extends Page {
+public class AdminisrationPage {
 
-    public ProjectPage(WebDriver driver) {
+    public AdminisrationPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[@class='contextual']")
-    public WebElement checkProjectPage;
+    @FindBy(xpath = "//div[@id='admin-menu']//a[@class='icon icon-user users']")
+    public WebElement users;
 }

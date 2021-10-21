@@ -13,6 +13,7 @@ public class HeaderPage extends Page {
     }
 
     /**
+     * метод проверки что элемент отсутствует на странице.
      * @param webElement которого не должно быть на странице поиска
      * @return элемент есть на странице = False. Элемента нет = True
      */
