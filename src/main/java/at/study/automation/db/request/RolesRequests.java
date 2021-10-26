@@ -4,6 +4,7 @@ import at.study.automation.db.connection.PostgresConnection;
 import at.study.automation.model.roles.Permissions;
 import at.study.automation.model.roles.Role;
 
+import java.util.List;
 import java.util.Locale;
 
 public class RolesRequests implements Create<Role> {
@@ -19,7 +20,7 @@ public class RolesRequests implements Create<Role> {
                 role.getPosition(),
                 role.getAssignable(),
                 role.getBuiltin(),
-                addPermissionsToRole(),
+                addPermissionsToRole(role.getPermissions()),
                 role.getIssuesVisibility().taskVisibility,
                 role.getUserVisibility().toString().toLowerCase(Locale.ROOT),
                 role.getTimeEntriesVisibility().timeEntriesVisibility,
@@ -32,12 +33,22 @@ public class RolesRequests implements Create<Role> {
     /**
      * @return готовая строка для вставки в таблицу roles бд
      */
-    private static String addPermissionsToRole() {
-        return "---\n" +
-                "- :" + (Permissions.ADD_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
-                "- :" + (Permissions.EDIT_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
-                "- :" + (Permissions.EDIT_MESSAGES.name()).toLowerCase(Locale.ROOT) + "\n" +
-                "- :" + (Permissions.MANAGE_WIKI.name()).toLowerCase(Locale.ROOT) + "\n";
+//    private static String addPermissionsToRole() {
+//        return "---\n" +
+//                "- :" + (Permissions.ADD_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
+//                "- :" + (Permissions.EDIT_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
+//                "- :" + (Permissions.EDIT_MESSAGES.name()).toLowerCase(Locale.ROOT) + "\n" +
+//                "- :" + (Permissions.MANAGE_WIKI.name()).toLowerCase(Locale.ROOT) + "\n";
+//    }
+
+    private String addPermissionsToRole(List<Permissions> per) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("---\n");
+        for (Permissions permissions : per) {
+            sb.append("- :").append(permissions.toString().toLowerCase()).append("\n");
+        }
+        return sb.toString();
     }
+
 
 }

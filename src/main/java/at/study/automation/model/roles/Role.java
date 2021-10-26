@@ -1,5 +1,6 @@
 package at.study.automation.model.roles;
 
+import at.study.automation.db.request.RolesRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
 import at.study.automation.utils.StringUtils;
@@ -30,8 +31,8 @@ public class Role extends CreatableEntity implements Creatable<Role> {
 
     @Override
     public Role create() {
-        //TODO c помощью sql запроса
-        throw new UnsupportedOperationException();
+        new RolesRequests().create(this);
+        return this;
     }
 
 }

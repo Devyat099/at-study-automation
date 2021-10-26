@@ -1,8 +1,12 @@
 package at.study.automation.model.users;
 
+import at.study.automation.db.request.MemberRequest;
+import at.study.automation.db.request.MemberRoleRequest;
 import at.study.automation.db.request.UserRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
+import at.study.automation.model.projects.Project;
+import at.study.automation.model.roles.Role;
 import at.study.automation.utils.StringUtils;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -61,6 +65,11 @@ public class User extends CreatableEntity implements Creatable<User> {
         emails.forEach(Email::create);
 
         return this;
+    }
+
+    public void addProject(Project project, List<Role> roles) {
+        MemberRequest.create(project, this);
+        roles.forEach(role -> MemberRoleRequest.create(role, this));
     }
 
 }

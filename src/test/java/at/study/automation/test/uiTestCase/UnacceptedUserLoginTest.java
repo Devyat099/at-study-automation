@@ -46,5 +46,4 @@ public class UnacceptedUserLoginTest {
 
         driver.quit();
     }
-
 }

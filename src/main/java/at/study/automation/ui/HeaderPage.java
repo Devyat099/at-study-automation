@@ -59,4 +59,8 @@ public class HeaderPage extends Page {
     @FindBy(xpath = "//div[@id='quick-search']//input[@id='q']")
     public WebElement search;
 
+    // Элемент "Домашняя страница"
+    @FindBy(xpath = "//div[@id='content']/h2")
+    public WebElement isHomePage;
+
 }
