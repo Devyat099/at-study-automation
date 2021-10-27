@@ -5,12 +5,11 @@ import at.study.automation.model.roles.Permissions;
 import at.study.automation.model.roles.Role;
 import at.study.automation.model.users.User;
 import at.study.automation.property.Property;
-import at.study.automation.ui.HeaderPage;
-import at.study.automation.ui.LoginPage;
-import at.study.automation.ui.ProjectPage;
+import at.study.automation.ui.pages.HeaderPage;
+import at.study.automation.ui.pages.LoginPage;
+import at.study.automation.ui.pages.ProjectPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -59,9 +58,9 @@ public class VisibilityProjectsUser {
         driver = new ChromeDriver();
         driver.get(Property.getStringProperty("url"));
 
-        headerPage = new HeaderPage(driver);
-        loginPage = new LoginPage(driver);
-        projectPage = new ProjectPage(driver);
+        headerPage = new HeaderPage();
+        loginPage = new LoginPage();
+        projectPage = new ProjectPage();
     }
 
     @Test
@@ -73,23 +72,19 @@ public class VisibilityProjectsUser {
         Assert.assertEquals(headerPage.isHomePage.getText(), "Домашняя страница");
 
         headerPage.projects.click();
-        WebElement element = driver.findElement(By.xpath(
-                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", publicProject.getIdentifier()))
-        );
-
-        WebElement element1 = driver.findElement(By.xpath(
-                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", privateProject1.getIdentifier()))
-        );
-
-        WebElement element2 = driver.findElement(By.xpath(
-                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", privateProject2.getIdentifier()))
-        );
-
-        Assert.assertFalse(ProjectPage.isValidationMsg(element));
-        Assert.assertTrue(ProjectPage.isValidationMsg(element1));
-        Assert.assertTrue(ProjectPage.isValidationMsg(element2));
 
 
+        Assert.assertFalse(ProjectPage.isValidationMsg(driver.findElement(By.xpath(
+                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", publicProject.getIdentifier())))));
+
+
+
+        Assert.assertTrue(ProjectPage.isValidationMsg((driver.findElement(By.xpath(
+                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", privateProject1.getIdentifier()))))));
+
+
+        Assert.assertTrue(ProjectPage.isValidationMsg(driver.findElement(By.xpath(
+                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", privateProject2.getIdentifier())))));
 
     }
 

@@ -1,15 +1,15 @@
-package at.study.automation.ui;
+package at.study.automation.ui.pages;
 
+import at.study.automation.ui.browser.BrowserManager;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HeaderPage extends Page {
 
-    public HeaderPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public HeaderPage() {
+        PageFactory.initElements(BrowserManager.getBrowser().getDriver(), this);
     }
 
     /**
@@ -59,7 +59,7 @@ public class HeaderPage extends Page {
     @FindBy(xpath = "//div[@id='quick-search']//input[@id='q']")
     public WebElement search;
 
-    // Элемент "Домашняя страница"
+    // текстовый элемент "Домашняя страница"
     @FindBy(xpath = "//div[@id='content']/h2")
     public WebElement isHomePage;
 

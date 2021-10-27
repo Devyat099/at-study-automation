@@ -3,8 +3,8 @@ package at.study.automation.test.uiTestCase;
 import at.study.automation.model.users.Status;
 import at.study.automation.model.users.User;
 import at.study.automation.property.Property;
-import at.study.automation.ui.HeaderPage;
-import at.study.automation.ui.LoginPage;
+import at.study.automation.ui.pages.HeaderPage;
+import at.study.automation.ui.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -29,8 +29,8 @@ public class UnacceptedUserLoginTest {
         driver = new ChromeDriver();
         driver.get(Property.getStringProperty("url"));
 
-        headerPage = new HeaderPage(driver);
-        loginPage = new LoginPage(driver);
+        headerPage = new HeaderPage();
+        loginPage = new LoginPage();
     }
 
     @Test

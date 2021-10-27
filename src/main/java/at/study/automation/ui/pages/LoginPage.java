@@ -1,12 +1,12 @@
-package at.study.automation.ui;
+package at.study.automation.ui.pages;
 
 import at.study.automation.model.users.User;
-import org.openqa.selenium.WebDriver;
+import at.study.automation.ui.browser.BrowserManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage extends Page{
+public class LoginPage extends Page {
 
     @FindBy(xpath = "//input[@id='username']")
     private WebElement loginInput;
@@ -20,8 +20,8 @@ public class LoginPage extends Page{
     @FindBy(xpath = "//div[@id='content']//div[@class='flash error']")
     public WebElement errorlogin;
 
-    public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public LoginPage() {
+        PageFactory.initElements(BrowserManager.getBrowser().getDriver(), this);
     }
 
     /**

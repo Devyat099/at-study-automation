@@ -3,7 +3,7 @@ package at.study.automation.test.uiTestCase;
 import at.study.automation.model.projects.Project;
 import at.study.automation.model.users.User;
 import at.study.automation.property.Property;
-import at.study.automation.ui.*;
+import at.study.automation.ui.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -42,8 +42,8 @@ public class SortedUserListByAdminTest {
         driver = new ChromeDriver();
         driver.get(Property.getStringProperty("url"));
 
-        headerPage = new HeaderPage(driver);
-        loginPage = new LoginPage(driver);
+        headerPage = new HeaderPage();
+        loginPage = new LoginPage();
         adminPage = new AdminisrationPage(driver);
         usersPage = new UsersPage(driver);
 
