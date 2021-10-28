@@ -23,9 +23,9 @@ public class ProjectPage extends Page {
 
         try {
             webElement.isDisplayed();
-            return false;
-        } catch (NoSuchElementException e) {
             return true;
+        } catch (NoSuchElementException e) {
+            return false;
         }
     }
 }

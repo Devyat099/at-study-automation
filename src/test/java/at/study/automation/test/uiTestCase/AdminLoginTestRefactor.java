@@ -1,20 +1,13 @@
 package at.study.automation.test.uiTestCase;
 
 import at.study.automation.model.users.User;
-import at.study.automation.ui.browser.Browser;
-import at.study.automation.ui.browser.BrowserManager;
-import at.study.automation.ui.pages.HeaderPage;
-import at.study.automation.ui.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AdminLoginTestRefactor {
+public class AdminLoginTestRefactor extends BaseUITest {
 
     private User admin;
-    private Browser browser;
-    private HeaderPage headerPage;
-    private LoginPage loginPage;
 
 
     @BeforeMethod
@@ -23,20 +16,13 @@ public class AdminLoginTestRefactor {
             setIsAdmin(true);
         }}.create();
 
-
-        browser = BrowserManager.getBrowser();
-//        driver = DriverFactory.getDriver();
-//        driver.manage().timeouts().implicitlyWait(5, SECONDS);
-//        driver.get(Property.getStringProperty("url"));
-
-        headerPage = new HeaderPage();
-        loginPage = new LoginPage();
+        openBrowser("login");
     }
 
     @Test
     public void positiveAdminLoginTest() {
 
-        headerPage.loginButton.click();
+        //headerPage.loginButton.click();
 
         loginPage.login(admin);
 
@@ -52,9 +38,5 @@ public class AdminLoginTestRefactor {
         //Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.loginButton));
         //Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.registerButton));
         Assert.assertTrue(headerPage.search.isDisplayed());
-
-        browser.getDriver().quit();
-
-
     }
 }

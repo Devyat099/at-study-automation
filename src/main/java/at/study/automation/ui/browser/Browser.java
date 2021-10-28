@@ -20,7 +20,7 @@ public class Browser {
 
     Browser(String uri) {
         driver = DriverFactory.getDriver();
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 10);
         get(uri);

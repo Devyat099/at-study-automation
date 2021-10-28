@@ -66,7 +66,7 @@ public class User extends CreatableEntity implements Creatable<User> {
 
         return this;
     }
-
+        // TODO проверить добавление пользователя
     public void addProject(Project project, List<Role> roles) {
         MemberRequest.create(project, this);
         roles.forEach(role -> MemberRoleRequest.create(role, this));
