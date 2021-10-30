@@ -11,7 +11,7 @@ import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmailRequests extends BaseRequests implements Create<Email>, Delete, Read<Email> {
+public class EmailRequests extends BaseRequest implements Create<Email>, Delete, Read<Email> {
 
     private User user;
 

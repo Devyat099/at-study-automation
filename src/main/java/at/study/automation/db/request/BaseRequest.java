@@ -3,7 +3,7 @@ package at.study.automation.db.request;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-abstract class BaseRequests {
+abstract class BaseRequest {
 
     protected LocalDateTime toLocalDate(Object timestamp) {
         Timestamp ts = (Timestamp) timestamp;

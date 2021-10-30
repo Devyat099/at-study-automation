@@ -12,8 +12,7 @@ public class MemberRoleRequest {
                 "VALUES(Default, ?, ?, ?) RETURNING id;\n";
 
 
-        PostgresConnection.INSTANCE.executeQuery(
-                query,
+        PostgresConnection.INSTANCE.executeQuery(query,
                 user.getId(),
                 role.getId(),
                 null

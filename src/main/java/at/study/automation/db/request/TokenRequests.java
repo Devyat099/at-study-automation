@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class TokenRequests extends BaseRequests implements Create<Token>, ReadAll<Token> {
+public class TokenRequests extends BaseRequest implements Create<Token>, ReadAll<Token> {
 
     private User user;
 

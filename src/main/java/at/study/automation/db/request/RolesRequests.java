@@ -33,13 +33,6 @@ public class RolesRequests implements Create<Role> {
     /**
      * @return готовая строка для вставки в таблицу roles бд
      */
-//    private static String addPermissionsToRole() {
-//        return "---\n" +
-//                "- :" + (Permissions.ADD_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
-//                "- :" + (Permissions.EDIT_PROJECT.name()).toLowerCase(Locale.ROOT) + "\n" +
-//                "- :" + (Permissions.EDIT_MESSAGES.name()).toLowerCase(Locale.ROOT) + "\n" +
-//                "- :" + (Permissions.MANAGE_WIKI.name()).toLowerCase(Locale.ROOT) + "\n";
-//    }
 
     private String addPermissionsToRole(List<Permissions> per) {
         StringBuilder sb = new StringBuilder();
