@@ -1,10 +1,8 @@
 package at.study.automation.ui.pages;
 
 import at.study.automation.model.users.User;
-import at.study.automation.ui.browser.BrowserManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends Page {
 
@@ -21,7 +19,7 @@ public class LoginPage extends Page {
     public WebElement errorlogin;
 
     public LoginPage() {
-        PageFactory.initElements(BrowserManager.getBrowser().getDriver(), this);
+        super();
     }
 
     /**

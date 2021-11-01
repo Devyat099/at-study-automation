@@ -2,21 +2,17 @@ package at.study.automation.test.uiTestCase;
 
 import at.study.automation.model.users.Status;
 import at.study.automation.model.users.User;
-import at.study.automation.property.Property;
-import at.study.automation.ui.pages.HeaderPage;
-import at.study.automation.ui.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ActiveUserLoginTest {
+public class ActiveUserLoginTest extends BaseUITest {
 
     private User userActive;
     private WebDriver driver;
-    private HeaderPage headerPage;
-    private LoginPage loginPage;
+    //private HeaderPage headerPage;
+    //private LoginPage loginPage;
 
 
     @BeforeMethod
@@ -28,11 +24,12 @@ public class ActiveUserLoginTest {
 
         System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 
-        driver = new ChromeDriver();
-        driver.get(Property.getStringProperty("url"));
+        //driver = new ChromeDriver();
+        //driver.get(Property.getStringProperty("url"));
 
-        headerPage = new HeaderPage();
-        loginPage = new LoginPage();
+        openBrowser();
+        //headerPage = new HeaderPage();
+        //loginPage = new LoginPage();
     }
 
     @Test
@@ -42,7 +39,7 @@ public class ActiveUserLoginTest {
         Thread.sleep(1000);
 
         loginPage.login(userActive);
-
+        // TODO Assert
         Assert.assertEquals(headerPage.myAccount.getText(), "Моя учётная запись");
         Assert.assertEquals(headerPage.whoEntered.getText(), "Вошли как " + userActive.getLogin());
         Assert.assertEquals(headerPage.homePage.getText(), "Домашняя страница");
@@ -50,12 +47,12 @@ public class ActiveUserLoginTest {
         Assert.assertEquals(headerPage.projects.getText(), "Проекты");
         Assert.assertEquals(headerPage.help.getText(), "Помощь");
         Assert.assertEquals(headerPage.logout.getText(), "Выйти");
-        Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.administration));
-        Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.loginButton));
-        Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.registerButton));
+        //Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.administration));
+        //Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.loginButton));
+        //Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.registerButton));
         Assert.assertTrue(headerPage.search.isDisplayed());
 
-        driver.quit();
+        //driver.quit();
 
     }
 }

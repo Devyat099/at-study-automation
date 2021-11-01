@@ -20,7 +20,7 @@ public class SortedUserListByAdminTest {
     private HeaderPage headerPage;
     private LoginPage loginPage;
     private ProjectPage projectPage;
-    private AdminisrationPage adminPage;
+    private AdministrationPage adminPage;
     private UsersPage usersPage;
 
     @BeforeMethod
@@ -44,8 +44,8 @@ public class SortedUserListByAdminTest {
 
         headerPage = new HeaderPage();
         loginPage = new LoginPage();
-        adminPage = new AdminisrationPage(driver);
-        usersPage = new UsersPage(driver);
+        adminPage = new AdministrationPage();
+        usersPage = new UsersPage();
 
     }
 

@@ -1,14 +1,12 @@
 package at.study.automation.ui.pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 public class UsersPage extends Page {
 
-    public UsersPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public UsersPage() {
+        super();
     }
 
     @FindBy(xpath = "//h2[text()='Пользователи']")

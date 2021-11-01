@@ -21,12 +21,17 @@ public class Browser {
     Browser(String uri) {
         driver = DriverFactory.getDriver();
         //driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 10);
+        int timeout = Property.getIntegerProperty("element.timeout");
+        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver, timeout);
         get(uri);
     }
 
     public void get(String uri){
         getDriver().get(Property.getStringProperty("url") + uri);
+    }
+
+    public void refresh() {
+        getDriver().navigate().refresh();
     }
 }
