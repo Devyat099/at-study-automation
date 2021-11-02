@@ -2,23 +2,21 @@ package at.study.automation.test.uiTestCase;
 
 import at.study.automation.model.projects.Project;
 import at.study.automation.model.users.User;
-import at.study.automation.property.Property;
 import at.study.automation.ui.pages.*;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class SortedUserListByAdminTest {
+public class SortedUserListByAdminTest extends BaseUITest {
 
     private User admin;
     private User testUserOne;
     private User testUserSome;
     private Project project;
     private WebDriver driver;
-    private HeaderPage headerPage;
-    private LoginPage loginPage;
+    //private HeaderPage headerPage;
+    //private LoginPage loginPage;
     private ProjectPage projectPage;
     private AdministrationPage adminPage;
     private UsersPage usersPage;
@@ -37,10 +35,8 @@ public class SortedUserListByAdminTest {
             setIsAdmin(false);
         }}.create();
 
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 
-        driver = new ChromeDriver();
-        driver.get(Property.getStringProperty("url"));
+        openBrowser();
 
         headerPage = new HeaderPage();
         loginPage = new LoginPage();
@@ -50,13 +46,13 @@ public class SortedUserListByAdminTest {
     }
 
     @Test
-    public void sortedListUserByAdminTest() throws InterruptedException {
+    public void sortedListUserByAdminTest() {
         headerPage.loginButton.click();
         loginPage.login(admin);
         headerPage.administration.click();
 
         adminPage.users.click();
-        Thread.sleep(1000);
+
 
         Assert.assertTrue(usersPage.isUsersPage.isDisplayed());
 
@@ -65,7 +61,5 @@ public class SortedUserListByAdminTest {
 
         Assert.assertTrue(usersPage.sortUserListByLoginAsc.isDisplayed());
 
-
-        driver.quit();
     }
 }

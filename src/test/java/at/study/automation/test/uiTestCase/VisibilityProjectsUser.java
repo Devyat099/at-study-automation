@@ -4,9 +4,9 @@ import at.study.automation.model.projects.Project;
 import at.study.automation.model.roles.Permissions;
 import at.study.automation.model.roles.Role;
 import at.study.automation.model.users.User;
+import at.study.automation.ui.browser.BrowserManager;
 import at.study.automation.ui.pages.ProjectPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,9 +19,6 @@ public class VisibilityProjectsUser extends BaseUITest {
     private Project publicProject;
     private Project privateProject1;
     private Project privateProject2;
-    private WebDriver driver;
-    //private HeaderPage headerPage;
-    //private LoginPage loginPage;
     private ProjectPage projectPage;
 
     @BeforeMethod
@@ -44,10 +41,9 @@ public class VisibilityProjectsUser extends BaseUITest {
         }}.create();
 
         user = new User().create();
-        user.addProject(privateProject2, Collections.singletonList(role));
+        user.setIsAdmin(true);
+        //user.addProject(privateProject2, Collections.singletonList(role));
 
-
-        //System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 
         openBrowser();
 
@@ -56,7 +52,7 @@ public class VisibilityProjectsUser extends BaseUITest {
     }
 
     @Test
-    public void VisibilityProjectTest() {
+    public void VisibilityProjectTest() throws InterruptedException {
         headerPage.loginButton.click();
 
         loginPage.login(user);
@@ -65,16 +61,18 @@ public class VisibilityProjectsUser extends BaseUITest {
         Assert.assertEquals(headerPage.isHomePage.getText(), "Домашняя страница");
 
         headerPage.projects.click();
-//
-//
-//
-        Assert.assertTrue(ProjectPage.isValidationMsg(browser.getDriver().findElement(By.xpath(
+
+
+
+        Assert.assertTrue(ProjectPage.isValidationMsg(BrowserManager.getBrowser().getDriver().findElement(By.xpath(
+
                 String.format("//div[@id='projects-index']//a[@href='/projects/%s']", publicProject.getIdentifier())))));
-
-
-        // TODO ЧТОБЫ ТЕСТ НЕ ПАДАЛ ПРИ НЕ НАХОЖДЕНИИ
-        Assert.assertTrue(ProjectPage.isValidationMsg((browser.getDriver().findElement(By.xpath(
-                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", privateProject2.getIdentifier()))))));
+//
+//
+//        // TODO ЧТОБЫ ТЕСТ НЕ ПАДАЛ ПРИ НЕ НАХОЖДЕНИИ
+//
+        Assert.assertTrue(ProjectPage.isValidationMsg((BrowserManager.getBrowser().getDriver().findElement(By.xpath(
+                String.format("//div[@id='projects-index']//a[@href='/projects/%s']", privateProject1.getIdentifier()))))));
 //
 //
 //        Assert.assertTrue(ProjectPage.isValidationMsg(driver.findElement(By.xpath(

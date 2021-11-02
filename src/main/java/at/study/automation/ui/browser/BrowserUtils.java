@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class BrowserUtils {
 // TODO описание
+
     public static List<String> getElementsText(List<WebElement> elements) {
         return elements.stream()
                 .map(WebElement::getText)

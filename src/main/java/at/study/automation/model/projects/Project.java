@@ -15,7 +15,7 @@ public class Project extends CreatableEntity implements Creatable<Project> {
     private String name = "9299Devyat " + StringUtils.randomEnglishString(5);
     private String description = StringUtils.randomEnglishString(5);
     private String homepage = "HomePage";
-    private Boolean isPublic = true;
+    private Boolean isPublic = false;
     private Integer parentId = null;
     private String identifier = StringUtils.randomEnglishString(4);
     private Status status = Status.ACTIVE;
