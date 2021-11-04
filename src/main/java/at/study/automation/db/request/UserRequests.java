@@ -51,6 +51,13 @@ public class UserRequests implements Create<User>, Read<User> {
         return from(queryResult.get(0));
     }
 
+
+    public User readUserByLogin(String login) {
+        String query = "SELECT * FROM users where login = ?";
+        List<Map<String, Object>> queryResult = PostgresConnection.INSTANCE.executeQuery(query, login);
+        return from(queryResult.get(0));
+    }
+
     private User from(Map<String, Object> data) {
         User user = new User();
         user.setId((Integer) data.get("id"));

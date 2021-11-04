@@ -1,6 +1,5 @@
 package at.study.automation.ui.pages;
 
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -15,15 +14,7 @@ public class HeaderPage extends Page {
      * @param webElement которого не должно быть на странице поиска
      * @return элемент есть на странице = False. Элемента нет = True
      */
-    public Boolean isValidationMsgNotExist(WebElement webElement) {
-        try {
-            webElement.isDisplayed();
-            return false;
-        } catch (NoSuchElementException e) {
-            return true;
-        }
 
-    }
     @FindBy(xpath = "//div[@id='account']//a[@class='login']")
     public WebElement loginButton;
 

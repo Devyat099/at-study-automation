@@ -20,4 +20,7 @@ public class UsersPage extends Page {
 
     @FindBy(xpath = "//a[@class='sort desc icon icon-sorted-asc' and contains(text(),'Пользователь')]")
     public WebElement sortUserListByLoginAsc;
+
+    @FindBy(xpath = "//div[@class='contextual']/a[@href='/users/new']")
+    public WebElement newUser;
 }

@@ -11,4 +11,5 @@ public class AdministrationPage extends Page {
 
     @FindBy(xpath = "//div[@id='admin-menu']//a[@class='icon icon-user users']")
     public WebElement users;
+
 }

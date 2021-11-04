@@ -24,25 +24,20 @@ public class UserTableSortTest extends BaseUITest {
         openBrowser("login");
 
         loginPage.login(admin);
-
         headerPage.administration.click();
-
         administrationPage.users.click();
 
     }
 
     @Test
-    public void testUsersTableDateSorting() throws InterruptedException {
+    public void testUsersTableDateSorting() {
         userTablePage.button("Создано").click();
         List<String> creationDatesByDesc = getElementsText(userTablePage.creationDates);
         assertListSortedByDateDesc(creationDatesByDesc);
 
-
         userTablePage.button("Создано").click();
         List<String> creationDatesByAsc = getElementsText(userTablePage.creationDates);
         assertListSortedByDateAsc(creationDatesByAsc);
-        //tearDown();
 
     }
-
 }
