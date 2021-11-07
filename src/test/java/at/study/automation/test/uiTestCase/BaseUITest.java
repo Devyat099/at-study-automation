@@ -35,7 +35,7 @@ public class BaseUITest {
         newUserPage = new NewUserPage();
     }
 
-    @AfterMethod
+    @AfterMethod(description = "Закрытие браузера")
     public void tearDown() {
         BrowserManager.closeBrowser();
     }

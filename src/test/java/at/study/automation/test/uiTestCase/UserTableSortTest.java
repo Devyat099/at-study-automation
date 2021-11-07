@@ -12,7 +12,6 @@ import static at.study.automation.utils.CompareUtils.assertListSortedByDateDesc;
 
 public class UserTableSortTest extends BaseUITest {
 
-    //private AdministrationPage administrationPage;
     private User admin;
 
     @BeforeMethod

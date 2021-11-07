@@ -1,16 +1,21 @@
 package at.study.automation.test.uiTestCase;
 
 import at.study.automation.model.users.User;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static at.study.automation.ui.browser.BrowserUtils.isElementDisplayed;
 
 public class AdminLoginTestRefactor extends BaseUITest {
 
     private User admin;
 
 
-    @BeforeMethod
+    @BeforeMethod(description = "В системе заведен пользователь с правами Админа. Открыт браузер на главной странице")
     private void prepareFixtures() {
         admin = new User() {{
             setIsAdmin(true);
@@ -19,10 +24,10 @@ public class AdminLoginTestRefactor extends BaseUITest {
         openBrowser("login");
     }
 
-    @Test
+    @Test(description = "Вход админом. Проверка отображения элементов")
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Devyatkin Denis")
     public void positiveAdminLoginTest() {
-
-        //headerPage.loginButton.click();
 
         loginPage.login(admin);
 
@@ -35,8 +40,8 @@ public class AdminLoginTestRefactor extends BaseUITest {
         Assert.assertEquals(headerPage.administration.getText(), "Администрирование");
         Assert.assertEquals(headerPage.help.getText(), "Помощь");
         Assert.assertEquals(headerPage.logout.getText(), "Выйти");
-        //Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.loginButton));
-        //Assert.assertTrue(headerPage.isValidationMsgNotExist(headerPage.registerButton));
+        Assert.assertFalse(isElementDisplayed(headerPage.loginButton));
+        Assert.assertFalse(isElementDisplayed(headerPage.registerButton));
         Assert.assertTrue(headerPage.search.isDisplayed());
     }
 }
