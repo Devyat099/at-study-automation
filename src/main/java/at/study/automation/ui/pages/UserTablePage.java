@@ -20,4 +20,8 @@ public class UserTablePage extends Page {
 
     @FindBy(xpath = "//table[@class='list users']/tbody//td[@class='created_on']")
     public List<WebElement> creationDates;
+
+
+    @FindBy(xpath = "//table[@class='list users']/tbody//td[@class='username']")
+    public List<WebElement> usersList;
 }

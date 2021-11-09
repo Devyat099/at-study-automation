@@ -1,14 +1,15 @@
-package at.study.automation.test.uiTestCase;
+package at.study.automation.test.uiTestCase.testUI;
 
 import at.study.automation.model.users.Status;
 import at.study.automation.model.users.User;
+import at.study.automation.test.uiTestCase.BaseUITest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static at.study.automation.ui.browser.BrowserUtils.isElementDisplayed;
 
-public class ActiveUserLoginTest extends BaseUITest {
+public class tk_2ActiveUserLoginTest extends BaseUITest {
 
     private User userActive;
 

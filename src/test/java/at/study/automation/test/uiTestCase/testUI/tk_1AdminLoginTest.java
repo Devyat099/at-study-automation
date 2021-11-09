@@ -1,6 +1,7 @@
-package at.study.automation.test.uiTestCase;
+package at.study.automation.test.uiTestCase.testUI;
 
 import at.study.automation.model.users.User;
+import at.study.automation.test.uiTestCase.BaseUITest;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -10,7 +11,7 @@ import org.testng.annotations.Test;
 
 import static at.study.automation.ui.browser.BrowserUtils.isElementDisplayed;
 
-public class AdminLoginTestRefactor extends BaseUITest {
+public class tk_1AdminLoginTest extends BaseUITest {
 
     private User admin;
 

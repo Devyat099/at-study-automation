@@ -1,9 +1,10 @@
-package at.study.automation.test.uiTestCase;
+package at.study.automation.test.uiTestCase.testUI;
 
 import at.study.automation.model.projects.Project;
 import at.study.automation.model.roles.Permissions;
 import at.study.automation.model.roles.Role;
 import at.study.automation.model.users.User;
+import at.study.automation.test.uiTestCase.BaseUITest;
 import at.study.automation.ui.pages.ProjectPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -13,7 +14,7 @@ import java.util.Collections;
 
 import static at.study.automation.ui.browser.BrowserUtils.isProjectDisplayed;
 
-public class VisibilityProjectsUser extends BaseUITest {
+public class tk_5VisibilityProjectsUser extends BaseUITest {
 
     private User user;
     private Project publicProject;

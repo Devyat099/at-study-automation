@@ -1,7 +1,8 @@
-package at.study.automation.test.uiTestCase;
+package at.study.automation.test.uiTestCase.testUI;
 
 import at.study.automation.model.users.Status;
 import at.study.automation.model.users.User;
+import at.study.automation.test.uiTestCase.BaseUITest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 import static at.study.automation.ui.browser.BrowserUtils.isElementDisplayed;
 
 
-public class UnacceptedUserLoginTest extends BaseUITest {
+public class tk_3UnacceptedUserLoginTest extends BaseUITest {
 
     private User userUnaccepted;
 

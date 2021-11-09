@@ -14,14 +14,12 @@ public class CompareUtils {
         List<String> datesCopy = new ArrayList<>(dates);
         datesCopy.sort(DATE_DESC_COMPARATOR);
         Assert.assertEquals(dates, datesCopy);
-
     }
 
     public static void assertListSortedByDateAsc(List<String> dates) {
         List<String> datesCopy = new ArrayList<>(dates);
         datesCopy.sort(DATE_ASC_COMPARATOR);
         Assert.assertEquals(dates, datesCopy);
-
     }
 
     private static final Comparator<String> DATE_DESC_COMPARATOR = (s1, s2) -> {
@@ -31,5 +29,21 @@ public class CompareUtils {
     };
 
     private static final Comparator<String> DATE_ASC_COMPARATOR = DATE_DESC_COMPARATOR.reversed();
+
+    public static void assertListSortedByUserDesc(List<String> users) {
+            List<String> usersCopy = new ArrayList<>(users);
+            usersCopy.sort(USER_DESC_COMPARATOR);
+            Assert.assertEquals(usersCopy, users);
+    }
+
+    public static void assertListSortedByUserAsc(List<String> users) {
+        List<String> usersCopy = new ArrayList<>(users);
+        usersCopy.sort(USER_ASC_COMPARATOR);
+        Assert.assertEquals(usersCopy, users);
+    }
+
+
+    private static final Comparator<String> USER_DESC_COMPARATOR = String::compareToIgnoreCase;
+    private static final Comparator<String> USER_ASC_COMPARATOR = USER_DESC_COMPARATOR.reversed();
 
 }

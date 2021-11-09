@@ -1,7 +1,8 @@
-package at.study.automation.test.uiTestCase;
+package at.study.automation.test.uiTestCase.testUI;
 
 import at.study.automation.db.request.UserRequests;
 import at.study.automation.model.users.User;
+import at.study.automation.test.uiTestCase.BaseUITest;
 import at.study.automation.utils.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 
 import static at.study.automation.utils.StringUtils.randomEmail;
 
-public class CreateNewUserByAdmin extends BaseUITest {
+public class tk_8CreateNewUserByAdmin extends BaseUITest {
 
 
     private User admin;
@@ -50,12 +51,6 @@ public class CreateNewUserByAdmin extends BaseUITest {
         User us = new UserRequests().readUserByLogin(userLogin);
 
         Assert.assertEquals(newUserPage.getNameCreateUser.getText(), us.getLogin());
-
-
-
-
-
-
 
     }
 }
