@@ -46,4 +46,14 @@ public class CompareUtils {
     private static final Comparator<String> USER_DESC_COMPARATOR = String::compareToIgnoreCase;
     private static final Comparator<String> USER_ASC_COMPARATOR = USER_DESC_COMPARATOR.reversed();
 
+
+    public static void assertNotEqualsSorted(List<String> list) {
+        List<String> listCopy = new ArrayList<>(list);
+        listCopy.sort(USER_ASC_COMPARATOR);
+        Assert.assertNotEquals(listCopy, list);
+        listCopy.sort(USER_DESC_COMPARATOR);
+        Assert.assertNotEquals(listCopy, list);
+
+    }
+
 }
