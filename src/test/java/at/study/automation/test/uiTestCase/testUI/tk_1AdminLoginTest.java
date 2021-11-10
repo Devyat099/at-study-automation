@@ -1,5 +1,6 @@
 package at.study.automation.test.uiTestCase.testUI;
 
+import at.study.automation.allure.AllureAssert;
 import at.study.automation.model.users.User;
 import at.study.automation.test.uiTestCase.BaseUITest;
 import io.qameta.allure.Owner;
@@ -26,15 +27,18 @@ public class tk_1AdminLoginTest extends BaseUITest {
     }
 
     @Test(description = "Вход админом. Проверка отображения элементов")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.MINOR)
     @Owner("Devyatkin Denis")
     public void positiveAdminLoginTest() {
 
         loginPage.login(admin);
 
         // Наличие/отсутствие элементов на странице
-        Assert.assertEquals(headerPage.myAccount.getText(), "Моя учётная запись");
-        Assert.assertEquals(headerPage.whoEntered.getText(), "Вошли как " + admin.getLogin());
+        AllureAssert.assertEquals(headerPage.myAccount.getText(),
+                "Моя учётная запись",
+                "текст \"Моя учётная запись\""
+        );
+        AllureAssert.assertEquals(headerPage.whoEntered.getText(), "Вошли как " + admin.getLogin());
         Assert.assertEquals(headerPage.homePage.getText(), "Домашняя страница");
         Assert.assertEquals(headerPage.myPage.getText(), "Моя страница");
         Assert.assertEquals(headerPage.projects.getText(), "Проекты");

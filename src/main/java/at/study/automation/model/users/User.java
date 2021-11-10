@@ -8,6 +8,7 @@ import at.study.automation.model.CreatableEntity;
 import at.study.automation.model.projects.Project;
 import at.study.automation.model.roles.Role;
 import at.study.automation.utils.StringUtils;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -55,6 +56,7 @@ public class User extends CreatableEntity implements Creatable<User> {
     }
 
     @Override
+    @Step("Создан пользователь в БД")
     public User create() {
         new UserRequests().create(this);
 
@@ -66,7 +68,8 @@ public class User extends CreatableEntity implements Creatable<User> {
 
         return this;
     }
-        // TODO проверить добавление пользователя
+
+    @Step("Пользователю добавлен {0} проект {1}")
     public void addProject(Project project, List<Role> roles) {
         MemberRequest.create(project, this);
         roles.forEach(role -> MemberRoleRequest.create(role, this));

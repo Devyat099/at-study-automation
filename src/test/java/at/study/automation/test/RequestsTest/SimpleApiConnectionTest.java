@@ -92,7 +92,7 @@ public class SimpleApiConnectionTest {
 
         Assert.assertEquals(body.getLimit().intValue(), 25);
         Assert.assertEquals(body.getUsers().get(0).getLogin(), "admin");
-    }
 
+    }
 
 }
