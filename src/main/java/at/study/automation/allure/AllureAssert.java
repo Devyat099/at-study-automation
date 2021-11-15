@@ -15,5 +15,14 @@ public class AllureAssert {
         Assert.assertEquals(actual, expected);
     }
 
+    @Step("Проверяем, что {1}")
+    public static void assertFalse(Boolean actual, String message) {
+        Assert.assertFalse(actual);
+    }
+
+    @Step("Проверяем, что {1}")
+    public static void assertTrue(Boolean actual, String message) {
+        Assert.assertTrue(actual);
+    }
 
 }
