@@ -1,10 +1,14 @@
 package at.study.automation.test.uiTestCase.testUI;
 
+import at.study.automation.allure.AllureAssert;
 import at.study.automation.db.request.UserRequests;
 import at.study.automation.model.users.User;
 import at.study.automation.test.uiTestCase.BaseUITest;
 import at.study.automation.utils.StringUtils;
-import org.testng.Assert;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -14,43 +18,54 @@ public class tk_8CreateNewUserByAdmin extends BaseUITest {
 
 
     private User admin;
-    private User user;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Заведен администратор в системе")
     private void prepareFixtures() {
 
         admin = new User() {{
             setIsAdmin(true);
         }}.create();
 
-        user = new User() {{
-            setIsAdmin(false);
-        }}.create();
-
         openBrowser();
     }
 
-    @Test
+    @Test(description = "Создание нового пользователя администратором")
+    @Severity(SeverityLevel.BLOCKER)
+    @Owner("Devyatkin Denis")
     public void createUserByAdmin() {
 
         headerPage.loginButton.click();
         loginPage.login(admin);
         headerPage.administration.click();
         administrationPage.users.click();
+        fillingInField();
+        checkCreateUserDB();
+    }
 
-        usersPage.newUser.click();
+    @Step("Заполняем поля данными нового пользователя")
+    private void fillingInField() {
 
-        newUserPage.userLogin.sendKeys(StringUtils.randomEnglishString(5));
-        newUserPage.userFirstname.sendKeys(StringUtils.randomEnglishString(3));
-        newUserPage.userLastname.sendKeys(StringUtils.randomEnglishString(5));
-        newUserPage.userMail.sendKeys(randomEmail());
-        newUserPage.userCreatePassword.click();
-        newUserPage.userCreate.click();
-        String userLogin = newUserPage.getNameCreateUser.getText();
+        AllureAssert.click(usersPage.newUser, "Новый пользователь");
 
-        User us = new UserRequests().readUserByLogin(userLogin);
+        AllureAssert.sendKeys(newUserPage.userLogin, StringUtils.randomEnglishString(5),"Новый пользователь");
 
-        Assert.assertEquals(newUserPage.getNameCreateUser.getText(), us.getLogin());
+        AllureAssert.sendKeys(newUserPage.userFirstname, StringUtils.randomEnglishString(3), "Имя");
+
+        AllureAssert.sendKeys(newUserPage.userLastname, StringUtils.randomEnglishString(5), "Фамилия");
+
+        AllureAssert.sendKeys(newUserPage.userMail, randomEmail(), "E-mail");
+
+        AllureAssert.click(newUserPage.userCreatePassword, "Задать пароль для пользователя");
+
+        AllureAssert.click(newUserPage.userCreate, "Создать пользователя");
 
     }
+
+    @Step("Проверяем что пользователь создался в базе данных")
+    private void checkCreateUserDB() {
+        String userLogin = newUserPage.getNameCreateUser.getText();
+        User us = new UserRequests().readUserByLogin(userLogin);
+        AllureAssert.assertEquals(newUserPage.getNameCreateUser.getText(), us.getLogin(), "что пользователь создался в БД");
+    }
 }
+

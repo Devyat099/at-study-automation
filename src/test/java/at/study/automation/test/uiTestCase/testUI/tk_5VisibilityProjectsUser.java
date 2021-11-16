@@ -1,11 +1,15 @@
 package at.study.automation.test.uiTestCase.testUI;
 
+import at.study.automation.allure.AllureAssert;
 import at.study.automation.model.projects.Project;
 import at.study.automation.model.roles.Permissions;
 import at.study.automation.model.roles.Role;
 import at.study.automation.model.users.User;
 import at.study.automation.test.uiTestCase.BaseUITest;
 import at.study.automation.ui.pages.ProjectPage;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,7 +26,7 @@ public class tk_5VisibilityProjectsUser extends BaseUITest {
     private Project privateProject2;
     private ProjectPage projectPage;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Заведен админ. Заведены проекты в системе")
     public void prepareFixtures() {
 
         publicProject = new Project() {{
@@ -50,17 +54,22 @@ public class tk_5VisibilityProjectsUser extends BaseUITest {
         projectPage = new ProjectPage();
     }
 
-    @Test
+    @Test(description = "Видимость проектов для пользователя")
+    @Severity(SeverityLevel.MINOR)
+    @Owner("Devyatkin Denis")
     public void VisibilityProjectTest() {
 
         headerPage.loginButton.click();
         loginPage.login(user);
         Assert.assertTrue(headerPage.isHomePage.isDisplayed());
-        Assert.assertEquals(headerPage.isHomePage.getText(), "Домашняя страница");
+        AllureAssert.assertEquals(headerPage.isHomePage.getText(), "Домашняя страница");
         headerPage.projects.click();
 
-        Assert.assertTrue(isProjectDisplayed(publicProject.getIdentifier()));
-        Assert.assertFalse(isProjectDisplayed(privateProject1.getIdentifier()));
-        Assert.assertFalse(isProjectDisplayed(privateProject2.getIdentifier()));
+        AllureAssert.assertTrue(isProjectDisplayed(publicProject.getIdentifier()),
+                "отображается публичный проект");
+        AllureAssert.assertFalse(isProjectDisplayed(privateProject1.getIdentifier()),
+                "не отображается приватный проект");
+        AllureAssert.assertFalse(isProjectDisplayed(privateProject2.getIdentifier()),
+                "не отображается приватный проект");
     }
 }

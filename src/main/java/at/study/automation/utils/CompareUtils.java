@@ -1,5 +1,6 @@
 package at.study.automation.utils;
 
+import io.qameta.allure.Step;
 import org.testng.Assert;
 
 import java.time.LocalDateTime;
@@ -29,13 +30,13 @@ public class CompareUtils {
     };
 
     private static final Comparator<String> DATE_ASC_COMPARATOR = DATE_DESC_COMPARATOR.reversed();
-
+    @Step("Проверяем сортировку списка по возрастанию")
     public static void assertListSortedByUserDesc(List<String> users) {
             List<String> usersCopy = new ArrayList<>(users);
             usersCopy.sort(USER_DESC_COMPARATOR);
             Assert.assertEquals(usersCopy, users);
     }
-
+    @Step("Проверяем сортировку списка по убыванию")
     public static void assertListSortedByUserAsc(List<String> users) {
         List<String> usersCopy = new ArrayList<>(users);
         usersCopy.sort(USER_ASC_COMPARATOR);
@@ -46,7 +47,7 @@ public class CompareUtils {
     private static final Comparator<String> USER_DESC_COMPARATOR = String::compareToIgnoreCase;
     private static final Comparator<String> USER_ASC_COMPARATOR = USER_DESC_COMPARATOR.reversed();
 
-
+    @Step("Проверяем, что список элементов не отсортирован")
     public static void assertNotEqualsSorted(List<String> list) {
         List<String> listCopy = new ArrayList<>(list);
         listCopy.sort(USER_ASC_COMPARATOR);

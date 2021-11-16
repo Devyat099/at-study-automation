@@ -9,6 +9,7 @@ public class AdministrationPage extends Page {
         super();
     }
 
+
     @FindBy(xpath = "//div[@id='admin-menu']//a[@class='icon icon-user users']")
     public WebElement users;
 

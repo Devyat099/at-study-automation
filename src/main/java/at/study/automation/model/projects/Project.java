@@ -4,6 +4,7 @@ import at.study.automation.db.request.ProjectRequests;
 import at.study.automation.model.Creatable;
 import at.study.automation.model.CreatableEntity;
 import at.study.automation.utils.StringUtils;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +28,7 @@ public class Project extends CreatableEntity implements Creatable<Project> {
 
 
     @Override
+    @Step("Создан новый проект")
     public Project create() {
         new ProjectRequests().create(this);
 

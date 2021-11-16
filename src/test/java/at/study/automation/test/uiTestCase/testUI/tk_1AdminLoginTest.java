@@ -25,7 +25,7 @@ public class tk_1AdminLoginTest extends BaseUITest {
     }
 
     @Test(description = "Вход админом. Проверка отображения элементов")
-    @Severity(SeverityLevel.MINOR)
+    @Severity(SeverityLevel.BLOCKER)
     @Owner("Devyatkin Denis")
     public void positiveAdminLoginTest() {
 
@@ -35,31 +35,41 @@ public class tk_1AdminLoginTest extends BaseUITest {
         AllureAssert.assertEquals(headerPage.myAccount.getText(),
                 "Моя учётная запись",
                 "отображение текста \"Моя учётная запись\"");
+
         AllureAssert.assertEquals(headerPage.whoEntered.getText(),
                 "Вошли как " + admin.getLogin(),
                 "отображение текста Вошли как " + admin.getLogin());
+
         AllureAssert.assertEquals(headerPage.homePage.getText(),
                 "Домашняя страница",
                 "отображение текста \"Домашняя страница\"");
+
         AllureAssert.assertEquals(headerPage.myPage.getText(),
                 "Моя страница",
                 "отображение текста \"Моя страница\"");
+
         AllureAssert.assertEquals(headerPage.projects.getText(),
                 "Проекты",
                 "отображение текста \"Проекты\"");
+
         AllureAssert.assertEquals(headerPage.administration.getText(),
                 "Администрирование",
                 "отображение текста \"Администрирование\"");
+
         AllureAssert.assertEquals(headerPage.help.getText(),
                 "Помощь",
                 "отображение текста \"Помощь\"");
+
         AllureAssert.assertEquals(headerPage.logout.getText(),
                 "Выйти",
                 "отображение текста \"Выйти\"");
+
         AllureAssert.assertFalse(isElementDisplayed(headerPage.loginButton),
                 "кнопка \"Логин\" не отображается");
+
         AllureAssert.assertFalse(isElementDisplayed(headerPage.registerButton),
                 "кнопка \"Зарегистрироваться\" не отображается");
+
         AllureAssert.assertTrue(headerPage.search.isDisplayed(),
                 "\"Поиск\" есть на странице");
     }

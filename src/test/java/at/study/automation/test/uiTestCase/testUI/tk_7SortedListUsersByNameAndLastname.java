@@ -2,6 +2,9 @@ package at.study.automation.test.uiTestCase.testUI;
 
 import at.study.automation.model.users.User;
 import at.study.automation.test.uiTestCase.BaseUITest;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -14,7 +17,7 @@ public class tk_7SortedListUsersByNameAndLastname extends BaseUITest {
 
     private User admin;
 
-    @BeforeMethod
+    @BeforeMethod(description = "Заведен админ в системе. Заведены пользователи.")
     public void prepareFixtures() {
 
         admin = new User() {{
@@ -33,8 +36,10 @@ public class tk_7SortedListUsersByNameAndLastname extends BaseUITest {
 
     }
 
-    @Test
-    public void SortedListTest() throws InterruptedException {
+    @Test(description = "Сортировка списка пользователей по полям \"Имя\" и \"Фамилия\"")
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Devyatkin Denis")
+    public void SortedListTest() {
 
         loginPage.login(admin);
         headerPage.administration.click();

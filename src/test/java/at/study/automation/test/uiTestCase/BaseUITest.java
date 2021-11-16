@@ -16,7 +16,7 @@ public class BaseUITest {
     protected UsersPage usersPage;
     protected NewUserPage newUserPage;
 
-    @Step("Открыт браузер на странице")
+    @Step("Открыт браузер на главной странице")
     protected void openBrowser() {
         browser = BrowserManager.getBrowser();
         initPages();
