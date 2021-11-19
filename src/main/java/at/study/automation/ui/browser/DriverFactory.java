@@ -12,7 +12,7 @@ public class DriverFactory {
      static WebDriver getDriver() {
         switch (BROWSER_NAME) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver1.exe");
                 return new ChromeDriver();
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckpdriver.exe");
