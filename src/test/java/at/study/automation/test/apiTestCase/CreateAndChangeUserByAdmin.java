@@ -35,6 +35,7 @@ public class CreateAndChangeUserByAdmin {
      * 1. Заведен пользователь в системе с правами администратора
      * 2. У пользователя есть доступ к API и ключ API
      */
+
     @BeforeClass
     private void createTestUsers() {
 
