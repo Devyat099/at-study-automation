@@ -25,7 +25,4 @@ public class UiSteps {
     public void assertMyAccountText(String expectedText) {
         AllureAssert.assertEquals(HeaderPage.getPage(HeaderPage.class).myAccount.getText(), expectedText);
     }
-
-
-
 }

@@ -19,13 +19,13 @@ public class ApiSteps {
 
     @Дано("Для пользователя \"(.+)\" заведен \"(.+)\" клиент")
     public void apiClientForUser(String userStashId, String apiStashId) {
+
         User user = Context.getStash().get(userStashId, User.class);
         RestApiClient apiClient = new RestAssuredClient(user);
 
         Context.getStash().put(apiStashId, apiClient);
     }
 
-   // @Дано("Выполнить запрос \"POST\" с помощью \"АПИ\" клиента по адресу \"/users.json\" и получить \"Ответ от сервера\"")
     @Дано("Выполнить запрос \"(.+)\", с телом \"(.+)\" с помощью клиента \"(.+)\" по адресу \"(.+)\" и получить ответ \"(.+)\"")
     public void apiRequest(String methodId, String bodyUser, String apiUser, String uri, String responseId) {
         User user = Context.getStash().get(bodyUser, User.class);

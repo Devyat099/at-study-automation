@@ -19,7 +19,9 @@ public class BrowserManager {
     }
 
     public static void closeBrowser() {
-        browser.getDriver().quit();
+        if (browser != null) {
+            browser.getDriver().quit();
+        }
         browser = null;
 
     }
